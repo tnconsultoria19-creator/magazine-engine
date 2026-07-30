@@ -426,42 +426,46 @@
      * This function will communicate directly with a server endpoint (e.g. Vercel + Puppeteer).
      */
     async function requestServerPDF() {
-      const statusText = document.getElementById('status-text');
-      const btn = document.getElementById('pdf-btn');
-      const btnText = document.getElementById('btn-text');
+  const statusText = document.getElementById('status-text');
+  const btn = document.getElementById('pdf-btn');
+  const btnText = document.getElementById('btn-text');
 
-      btn.disabled = true;
-      btn.style.opacity = '0.6';
-      btnText.innerText = "CONNECTING...";
-      statusText.innerText = "Connecting to Puppeteer server-side endpoint...";
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  btnText.innerText = "GENERATING...";
+  statusText.innerText = "Generating PDF...";
 
-      try {
-        /* 
-         * Future Server-Side Implementation Example:
-         * -------------------------------------------------------------
-         * const response = await fetch('/api/render-pdf', {
-         *   method: 'POST',
-         *   headers: { 'Content-Type': 'application/json' },
-         *   body: JSON.stringify({ html: document.documentElement.outerHTML })
-         * });
-         * const blob = await response.blob();
-         * window.location.href = URL.createObjectURL(blob);
-         */
+  try {
+    const response = await fetch('/api/render-pdf');
 
-        setTimeout(() => {
-          statusText.innerText = "Puppeteer payload ready. Send HTML to Vercel endpoint.";
-          btnText.innerText = "SERVER READY";
-          btn.disabled = false;
-          btn.style.opacity = '1';
-        }, 1200);
+    if (!response.ok) {
+      throw new Error("PDF generation failed.");
+    }
 
-      } catch (error) {
-        console.error("Server API error:", error);
-        statusText.innerText = "Error connecting to server PDF endpoint.";
-        btnText.innerText = "RETRY";
-        btn.disabled = false;
-        btn.style.opacity = '1';
-      }
+    const blob = await response.blob();
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "magazine.pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
+
+    statusText.innerText = "PDF downloaded successfully.";
+    btnText.innerText = "DOWNLOAD PDF";
+  } catch (error) {
+    console.error(error);
+    statusText.innerText = "Error generating PDF.";
+    btnText.innerText = "TRY AGAIN";
+  }
+
+  btn.disabled = false;
+  btn.style.opacity = "1";
+}
     }
   </script>
 </body>
