@@ -175,7 +175,7 @@
 <body>
 
   <!-- FLOATING ACTION BAR (NO BROWSER PRINT / NO CLIENT PDF LIBRARIES) -->
-  <div class="no-print server-bar">
+  <div id="downloadPdf" class="no-print server-bar">
     <div>
       <h4 class="font-display" style="font-size: 1.25rem; line-height: 1;">HAVEN <span class="font-accent" style="font-size: 10px; opacity: 0.6; margin-left: 0.5rem; letter-spacing: 0.2em;">Server Engine</span></h4>
       <p id="status-text" class="font-accent uppercase" style="font-size: 9px; letter-spacing: 0.2em; color: #a8a29e; margin-top: 4px;">Fixed A4 Layout • Ready for Puppeteer Render</p>
@@ -420,52 +420,58 @@
   </div>
 
   <script>
+    // Hide floating bar/button during Puppeteer server rendering (?render=1)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("render") === "1") {
+      const btn = document.getElementById("downloadPdf");
+      if (btn) {
+        btn.style.display = "none";
+      }
+    }
+
     /**
      * Server-side PDF export stub function.
      * Replaces all client-side PDF compilation libraries (pdf-lib, fontkit, html2canvas).
      * This function will communicate directly with a server endpoint (e.g. Vercel + Puppeteer).
      */
     async function requestServerPDF() {
-  const statusText = document.getElementById('status-text');
-  const btn = document.getElementById('pdf-btn');
-  const btnText = document.getElementById('btn-text');
+      const statusText = document.getElementById('status-text');
+      const btn = document.getElementById('pdf-btn');
+      const btnText = document.getElementById('btn-text');
 
-  btn.disabled = true;
-  btn.style.opacity = '0.6';
-  btnText.innerText = "GENERATING...";
-  statusText.innerText = "Generating PDF...";
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btnText.innerText = "CONNECTING...";
+      statusText.innerText = "Connecting to Puppeteer server-side endpoint...";
 
-  try {
-    const response = await fetch('/api/render-pdf');
+      try {
+        /* 
+         * Future Server-Side Implementation Example:
+         * -------------------------------------------------------------
+         * const response = await fetch('/api/render-pdf', {
+         *   method: 'POST',
+         *   headers: { 'Content-Type': 'application/json' },
+         *   body: JSON.stringify({ html: document.documentElement.outerHTML })
+         * });
+         * const blob = await response.blob();
+         * window.location.href = URL.createObjectURL(blob);
+         */
 
-    if (!response.ok) {
-      throw new Error("PDF generation failed.");
+        setTimeout(() => {
+          statusText.innerText = "Puppeteer payload ready. Send HTML to Vercel endpoint.";
+          btnText.innerText = "SERVER READY";
+          btn.disabled = false;
+          btn.style.opacity = '1';
+        }, 1200);
+
+      } catch (error) {
+        console.error("Server API error:", error);
+        statusText.innerText = "Error connecting to server PDF endpoint.";
+        btnText.innerText = "RETRY";
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
     }
-
-    const blob = await response.blob();
-
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "magazine.pdf";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    window.URL.revokeObjectURL(url);
-
-    statusText.innerText = "PDF downloaded successfully.";
-    btnText.innerText = "DOWNLOAD PDF";
-  } catch (error) {
-    console.error(error);
-    statusText.innerText = "Error generating PDF.";
-    btnText.innerText = "TRY AGAIN";
-  }
-
-  btn.disabled = false;
-  btn.style.opacity = "1";
-}
   </script>
 </body>
 </html>
