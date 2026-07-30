@@ -2,25 +2,28 @@ import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core";
 
 export default async function handler(req, res) {
+  let browser;
+
   try {
-    // Detect the current deployment URL automatically
     const host = req.headers.host;
+
     const protocol =
       host.includes("localhost") || host.startsWith("127.")
         ? "http"
         : "https";
 
-    const targetUrl = `${protocol}://${host}`;
+    // Render a clean version of the page
+    const targetUrl = `${protocol}://${host}/?render=1`;
 
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
       defaultViewport: {
         width: 794,
         height: 1123,
         deviceScaleFactor: 2,
       },
-      executablePath: await chromium.executablePath(),
-      headless: true,
     });
 
     const page = await browser.newPage();
@@ -30,9 +33,19 @@ export default async function handler(req, res) {
       timeout: 60000,
     });
 
+    // Wait for fonts
+    await page.evaluate(async () => {
+      if (document.fonts) {
+        await document.fonts.ready;
+      }
+    });
+
+    // Give lazy images/animations time to finish
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     await page.emulateMediaType("print");
 
-    const pdf = await page.pdf({
+    const pdfData = await page.pdf({
       format: "A4",
       printBackground: true,
       preferCSSPageSize: true,
@@ -44,21 +57,31 @@ export default async function handler(req, res) {
       },
     });
 
-    await browser.close();
+    const buffer = Buffer.from(pdfData);
 
+    res.statusCode = 200;
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
       "Content-Disposition",
       'attachment; filename="magazine.pdf"'
     );
+    res.setHeader("Content-Length", buffer.length);
 
-    res.status(200).send(pdf);
+    return res.end(buffer);
+
   } catch (err) {
+    console.error("PDF generation failed:");
     console.error(err);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      error: err.message,
+      message: err.message,
+      stack: err.stack,
     });
+
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
   }
 }
