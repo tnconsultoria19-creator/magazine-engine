@@ -1,477 +1,883 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HAVEN Lifestyle Magazine — Print Edition</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BODIVA & BFA Investment Outlook 2026</title>
+    <style>
+        /* */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        @font-face {
+            font-family: 'Boska';
+            src: url('https://eagleprocurement.github.io/Kwanza-Nobre/Boska-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;600;700&display=swap');
+        :root {
+            --bg-paper: #F7F5F0;
+            --bg-paper-dark: #11141A;
+            --text-dark: #14171F;
+            --text-muted: #5C6270;
+            --accent-gold: #A68966;
+            --accent-gold-light: #D4C3A3;
+            --brand-navy: #0F1D33;
+            --brand-crimson: #8C2328;
+            --border-light: #E2DDD5;
+            --reading-width: 65ch;
+        }
 
-    @font-face {
-      font-family: 'Boska';
-      src: url('https://eagleprocurement.github.io/Kwanza-Nobre/Boska-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'Boska';
-      src: url('https://eagleprocurement.github.io/Kwanza-Nobre/Boska-Italic.otf') format('opentype');
-      font-weight: 400;
-      font-style: italic;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        body {
+            background-color: #CBD0D8;
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 0;
+            gap: 30px;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    body {
-      background-color: #d6d3d1; /* stone-300 */
-      font-family: 'IBM Plex Sans', sans-serif;
-      color: #1c1917; /* stone-900 */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 3rem;
-      padding-bottom: 12rem;
-      -webkit-font-smoothing: antialiased;
-    }
+        /* */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background-color: var(--bg-paper);
+            padding: 20mm 22mm;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        .dark-theme .a4-page {
+            background-color: var(--brand-navy);
+            color: #F0F3F8;
+        }
 
-    .font-display { font-family: 'Boska', serif; }
-    .font-editorial { font-family: 'Cormorant Garamond', serif; }
-    .font-body { font-family: 'IBM Plex Sans', sans-serif; }
-    .font-accent { font-family: 'Space Grotesk', sans-serif; }
+        @media print {
+            @page {
+                size: 210mm 297mm;
+                margin: 0;
+            }
+            body {
+                background: none;
+                padding: 0;
+                gap: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .a4-page {
+                box-shadow: none;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            #downloadPdf, .no-print {
+                display: none !important;
+            }
+        }
 
-    /* FIXED A4 CANVAS FOR SERVER-SIDE PUPPETEER RENDERING */
-    .a4-page {
-      width: 210mm;
-      height: 297mm;
-      flex-shrink: 0;
-      background: #fcfbf9;
-      position: relative;
-      overflow: hidden; /* Strict fixed bounds, no page overflow */
-      margin-bottom: 4rem;
-      box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.3);
-      page-break-after: always;
-      break-after: page;
-    }
+        /* Typography Hierarchy */
+        .font-display { font-family: 'Boska', 'Cormorant Garamond', serif; }
+        .font-editorial { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'IBM Plex Sans', sans-serif; }
+        .font-accent { font-family: 'Space Grotesk', sans-serif; }
 
-    @page {
-      size: A4 portrait;
-      margin: 0;
-    }
+        h1.cover-title {
+            font-family: 'Boska', serif;
+            font-size: 50px;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
 
-    @media print {
-      body {
-        background: #ffffff !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .no-print {
-        display: none !important;
-      }
-      .a4-page {
-        margin: 0 !important;
-        box-shadow: none !important;
-        width: 210mm !important;
-        height: 297mm !important;
-      }
-    }
+        h2.section-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
 
-    .drop-cap::first-letter {
-      font-family: 'Boska', serif;
-      font-size: 5rem;
-      line-height: 3.5rem;
-      padding-top: 10px;
-      padding-right: 14px;
-      float: left;
-      color: #1c1917;
-    }
+        h3.subsection-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent-gold);
+            margin-bottom: 6px;
+        }
 
-    .col-2-text {
-      column-count: 2;
-      column-gap: 2.5rem;
-      text-align: justify;
-      hyphens: auto;
-    }
+        p.body-copy {
+            font-size: 11.5px;
+            line-height: 1.72;
+            color: #2D313B;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
 
-    ::selection {
-      background: #1c1917;
-      color: #f5f5f4;
-    }
+        .dark-theme p.body-copy {
+            color: #C2C8D4;
+        }
 
-    .server-bar {
-      position: fixed;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 50;
-      background-color: #09090b; /* stone-950 */
-      color: #f5f5f4;
-      padding: 1.25rem 2rem;
-      border-radius: 9999px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      border: 1px solid #27272a;
-      backdrop-filter: blur(16px);
-      min-width: 540px;
-    }
+        p.standfirst {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.45;
+            font-style: italic;
+            color: var(--brand-navy);
+            margin-bottom: 18px;
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 14px;
+        }
 
-    .server-btn {
-      background-color: #f5f5f4;
-      color: #09090b;
-      padding: 0.75rem 1.75rem;
-      border-radius: 9999px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    }
+        .dark-theme p.standfirst {
+            color: var(--accent-gold-light);
+        }
 
-    .server-btn:hover {
-      background-color: #ffffff;
-      transform: translateY(-1px);
-    }
+        .drop-cap::first-letter {
+            font-family: 'Boska', serif;
+            font-size: 3.8rem;
+            line-height: 2.8rem;
+            padding-top: 4px;
+            padding-right: 8px;
+            float: left;
+            color: var(--brand-navy);
+        }
 
-    .server-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+        /* */
+        .header-folio {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
+        }
 
-    /* Helper Utility Classes */
-    .flex { display: flex; }
-    .flex-col { display: flex; flex-direction: column; }
-    .justify-between { justify-content: space-between; }
-    .align-center { align-items: center; }
-    .items-end { align-items: flex-end; }
-    .gap-4 { gap: 1rem; }
-    .gap-6 { gap: 1.5rem; }
-    .gap-8 { gap: 2rem; }
-    .gap-10 { gap: 2.5rem; }
-    .p-15mm { padding: 15mm; }
-    .w-full { width: 100%; }
-    .h-full { height: 100%; }
-    .relative { position: relative; }
-    .absolute { position: absolute; }
-    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-    .object-cover { object-fit: cover; }
-    .uppercase { text-transform: uppercase; }
-    .tracking-widest { letter-spacing: 0.25em; }
-    .text-center { text-align: center; }
-  </style>
+        .dark-theme .header-folio {
+            border-bottom-color: rgba(255,255,255,0.12);
+        }
+
+        .footer-folio {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-light);
+            padding-top: 10px;
+            margin-top: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8.5px;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .dark-theme .footer-folio {
+            border-top-color: rgba(255,255,255,0.12);
+            color: #8A92A3;
+        }
+
+        /* Modular Grid Systems */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .grid-sidebar-left {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 22px;
+        }
+
+        .grid-sidebar-right {
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 22px;
+        }
+
+        /* Callout Boxes and Data Modules */
+        .sidebar-box {
+            background-color: rgba(15, 29, 51, 0.04);
+            border: 1px solid var(--border-light);
+            padding: 14px;
+            border-radius: 2px;
+        }
+
+        .dark-theme .sidebar-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-card {
+            border-top: 2px solid var(--accent-gold);
+            padding-top: 8px;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--brand-navy);
+            line-height: 1;
+        }
+
+        .dark-theme .stat-number {
+            color: #FFF;
+        }
+
+        .stat-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* */
+        /* Custom CSS Data Visualizations */
+        .chart-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--border-light);
+            padding: 14px;
+            margin: 12px 0;
+        }
+
+        .dark-theme .chart-container {
+            background: rgba(15, 23, 38, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 110px;
+            padding-top: 20px;
+            border-bottom: 1px solid #CCC;
+            gap: 12px;
+        }
+
+        .dark-theme .bar-chart {
+            border-bottom-color: #444;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+        }
+
+        .bar-fill {
+            width: 100%;
+            max-width: 28px;
+            background-color: var(--brand-navy);
+            transition: height 0.3s;
+            position: relative;
+        }
+
+        .bar-fill.accent {
+            background-color: var(--accent-gold);
+        }
+
+        .bar-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8px;
+            font-weight: 700;
+            position: absolute;
+            top: -14px;
+            width: 100%;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .dark-theme .bar-value {
+            color: #FFF;
+        }
+
+        .bar-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8px;
+            text-transform: uppercase;
+            margin-top: 6px;
+            color: var(--text-muted);
+        }
+
+        /* Vector SVG Yield Curve Chart */
+        .svg-chart {
+            width: 100%;
+            height: 120px;
+            overflow: visible;
+        }
+
+        /* Server Action Bar */
+        #downloadPdf {
+            position: fixed;
+            bottom: 24px;
+            z-index: 999;
+            background-color: var(--brand-navy);
+            color: #FFF;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #downloadPdf:hover {
+            background-color: var(--accent-gold);
+        }
+    </style>
 </head>
 <body>
 
-  <!-- FLOATING ACTION BAR (NO BROWSER PRINT / NO CLIENT PDF LIBRARIES) -->
-  <div id="downloadPdf" class="no-print server-bar">
-    <div>
-      <h4 class="font-display" style="font-size: 1.25rem; line-height: 1;">HAVEN <span class="font-accent" style="font-size: 10px; opacity: 0.6; margin-left: 0.5rem; letter-spacing: 0.2em;">Server Engine</span></h4>
-      <p id="status-text" class="font-accent uppercase" style="font-size: 9px; letter-spacing: 0.2em; color: #a8a29e; margin-top: 4px;">Fixed A4 Layout • Ready for Puppeteer Render</p>
+    <!-- Server Action Bar -->
+    <div id="downloadPdf" onclick="downloadMagazinePdf()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download PDF</span>
     </div>
-    <button id="pdf-btn" onclick="requestServerPDF()" class="server-btn">
-      <span id="btn-text">DOWNLOAD PDF</span>
-    </button>
-  </div>
 
-  <!-- PAGE 1: COVER (Image-Driven, Hero Typography) -->
-  <div class="a4-page relative flex flex-col items-center text-center">
-    <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=1200&q=90" class="absolute inset-0 w-full h-full object-cover" alt="Cape Town Coastline" />
-    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3), rgba(0,0,0,0.8));"></div>
-    
-    <div class="relative flex flex-col justify-between p-15mm w-full h-full" style="z-index: 10;">
-      <!-- Top Meta -->
-      <div class="flex justify-between w-full" style="border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 1rem;">
-        <p class="font-accent uppercase tracking-widest" style="font-size: 9px; font-weight: 700; color: #ffffff;">Cape Town Edition</p>
-        <p class="font-accent uppercase tracking-widest" style="font-size: 9px; color: rgba(255,255,255,0.8);">Issue 18 • Autumn 2026</p>
-      </div>
+    <!-- SPREAD 01: COVER SPREAD -->
+    <div class="a4-page dark-theme" style="background: linear-gradient(135deg, #0A1324 0%, #0F1D33 60%, #172845 100%);">
+        <div class="header-folio">
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.25em; color: var(--accent-gold);">BODIVA & BFA CAPITAL MARKETS</span>
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.25em; color: #8A92A3;">ANNUAL STRATEGY • 2026/2027</span>
+        </div>
 
-      <!-- Center Hero -->
-      <div style="margin-top: auto; margin-bottom: 4rem;">
-        <h1 class="font-display" style="font-size: 140px; color: #ffffff; line-height: 1; letter-spacing: -0.02em; margin-bottom: 1rem;">HAVEN</h1>
-        <p class="font-editorial" style="font-size: 1.875rem; font-style: italic; color: rgba(255,255,255,0.9);">The Architecture of Slow Living</p>
-        <div style="width: 4rem; height: 1px; background: #ffffff; margin: 2.5rem auto;"></div>
-        <p class="font-body uppercase" style="font-size: 11px; letter-spacing: 0.3em; color: rgba(255,255,255,0.8); font-weight: 500;">Inside this issue</p>
-        <p class="font-editorial" style="font-size: 1.125rem; color: #ffffff; margin-top: 0.5rem;">Clifton's Concrete Sanctuaries • The Tidal Pool Protocol • Heritage Vineyards</p>
-      </div>
+        <div style="margin-top: 40px; margin-bottom: 30px;">
+            <h3 class="subsection-header" style="color: var(--accent-gold); font-size: 12px; margin-bottom: 16px;">Joint Institutional Outlook</h3>
+            <h1 class="cover-title" style="color: #FFF; font-size: 54px; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                ANGOLA CAPITAL<br/>MARKET OUTLOOK
+            </h1>
+            <div style="width: 60px; height: 3px; background-color: var(--accent-gold); margin-bottom: 24px;"></div>
+            <p class="font-editorial" style="font-size: 22px; line-height: 1.4; color: #D4C3A3; max-w: 80%; font-style: italic;">
+                Navigating Sovereign Debt Yield Curves, Privatization Liquidity, and Structural Equity Growth in Sub-Saharan Africa.
+            </p>
+        </div>
+
+        <!-- Metric Cards Overlay -->
+        <div class="grid-4col" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: auto; margin-bottom: 30px;">
+            <div class="stat-card" style="border-top-color: var(--accent-gold);">
+                <div class="stat-number" style="font-size: 22px;">$4.2B</div>
+                <div class="stat-label">BODIVA Annual Volume</div>
+            </div>
+            <div class="stat-card" style="border-top-color: var(--accent-gold);">
+                <div class="stat-number" style="font-size: 22px;">16.8%</div>
+                <div class="stat-label">Peak Treasury Yield</div>
+            </div>
+            <div class="stat-card" style="border-top-color: var(--accent-gold);">
+                <div class="stat-number" style="font-size: 22px;">+3.2%</div>
+                <div class="stat-label">Projected GDP Growth</div>
+            </div>
+            <div class="stat-card" style="border-top-color: var(--accent-gold);">
+                <div class="stat-number" style="font-size: 22px;">18.4%</div>
+                <div class="stat-label">Target Inflation Rate</div>
+            </div>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 18px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <p class="font-accent" style="font-size: 9px; color: var(--accent-gold); letter-spacing: 0.15em;">PARTNERSHIP PUBLICATION</p>
+                <p class="font-sans" style="font-size: 11px; color: #FFF; font-weight: 500; margin-top: 2px;">Bolsa de Dívida e Valores de Angola & Banco de Fomento Angola</p>
+            </div>
+            <span class="font-accent" style="font-size: 10px; color: #8A92A3;">LUANDA • Q3 2026</span>
+        </div>
+
+        <div class="footer-folio">
+            <span>CONFIDENTIAL • FOR INSTITUTIONAL INVESTORS</span>
+            <span>SPREAD 01</span>
+        </div>
     </div>
-  </div>
 
-  <!-- PAGE 2: MASTHEAD & EDITOR (Quiet, Text-Driven, Structured Columns) -->
-  <div class="a4-page flex p-15mm" style="gap: 10mm;">
-    <!-- Left Column: Masthead Sidebar (Fixed Width) -->
-    <div style="width: 45mm; display: flex; flex-direction: column; border-top: 2px solid #1c1917; padding-top: 1rem;">
-      <h3 class="font-accent uppercase" style="font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: #1c1917; margin-bottom: 2rem;">Masthead</h3>
-      <div class="font-body" style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <!-- -->
+    <!-- SPREAD 02: TABLE OF CONTENTS & EXECUTIVE STATEMENT -->
+    <div class="a4-page">
+        <div class="header-folio">
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">EXECUTIVE STRATEGY STATEMENT</span>
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">BODIVA & BFA OUTLOOK 2026</span>
+        </div>
+
+        <div class="grid-sidebar-left" style="align-items: start;">
+            <!-- Left Sidebar Navigation -->
+            <div class="sidebar-box">
+                <h3 class="subsection-header">Report Directory</h3>
+                <ul class="font-sans" style="list-style: none; font-size: 10.5px; line-height: 2.2; color: var(--text-dark);">
+                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>01 Executive Letter</span> <strong>p. 02</strong></li>
+                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>02 Macro Analytics</span> <strong>p. 03</strong></li>
+                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>03 Equity & PROPRIV</span> <strong>p. 04</strong></li>
+                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>04 Fixed Income Debt</span> <strong>p. 05</strong></li>
+                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>05 ESG & Infrastructure</span> <strong>p. 06</strong></li>
+                </ul>
+
+                <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-light);">
+                    <h3 class="subsection-header">Key Indicators</h3>
+                    <p class="font-accent" style="font-size: 9px; color: var(--text-muted); margin-bottom: 4px;">BNA REPO RATE</p>
+                    <p class="font-sans" style="font-size: 16px; font-weight: 700; color: var(--brand-navy);">19.50%</p>
+                    
+                    <p class="font-accent" style="font-size: 9px; color: var(--text-muted); margin-top: 10px; margin-bottom: 4px;">AOA/USD FX RATE</p>
+                    <p class="font-sans" style="font-size: 16px; font-weight: 700; color: var(--brand-navy);">852.4</p>
+                </div>
+            </div>
+
+            <!-- Main Executive Article -->
+            <div>
+                <h3 class="subsection-header">Joint Statement</h3>
+                <h2 class="section-header">A Decade of Institutional Maturity: From Sovereign Issuer to Vibrant Secondary Market</h2>
+                <p class="standfirst">
+                    "As Angola accelerates its economic diversification away from crude dependency, capital markets have transitioned from an emerging debt venue into a primary engine for corporate capital formation."
+                </p>
+                
+                <p class="body-copy drop-cap">
+                    Over the past 36 months, the Angolan capital market landscape has undergone an extraordinary structural metamorphosis. Under the combined stewardship of BODIVA and leading financial intermediaries like BFA Capital Markets, secondary market liquidity has expanded beyond institutional bank balances to encompass pension funds, private wealth, and corporate treasuries.
+                </p>
+                <p class="body-copy">
+                    The ongoing execution of the State Privatization Program (PROPRIV) marks a definitive paradigm shift. With successful equity listings of commercial banking anchors such as Banco Angolano de Investimentos (BAI) and Banco Caixa Geral Angola (BCGA), investor participation has expanded exponentialy. The market is no longer solely focused on sovereign debt issuances; it now encompasses dividend-yielding equity securities and liquidity-generating repo agreements.
+                </p>
+                
+                <div class="sidebar-box" style="margin: 16px 0; background-color: rgba(166, 137, 102, 0.08); border-color: var(--accent-gold);">
+                    <h3 class="subsection-header" style="color: var(--brand-navy);">Strategic Imperatives for 2026/2027</h3>
+                    <p class="body-copy" style="margin-bottom: 0;">
+                        Our joint advisory Framework focuses on three pillars: <strong>(1) Extending sovereign debt maturity profiles</strong> to reduce short-term refinancing risks, <strong>(2) Deepening secondary equity market liquidity</strong> via market-maker frameworks, and <strong>(3) Integrating regional SADC clearing mechanisms</strong> to attract international ESG capital.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-folio">
+            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
+            <span>PAGE 02</span>
+        </div>
+    </div>
+
+    <!-- -->
+    <!-- SPREAD 03: MACROECONOMIC LANDSCAPE & SOVEREIGN YIELD CURVE -->
+    <div class="a4-page">
+        <div class="header-folio">
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">SECTION 02 • MACROECONOMIC LANDSCAPE</span>
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">DEBT YIELD DYNAMICS</span>
+        </div>
+
         <div>
-          <p class="font-accent uppercase" style="font-size: 8px; letter-spacing: 0.2em; color: #78716c; margin-bottom: 4px;">Editor-in-Chief</p>
-          <p style="font-size: 11px; font-weight: 500; color: #1c1917;">Alistair Vance</p>
+            <h3 class="subsection-header">Macro Analysis</h3>
+            <h2 class="section-header">The Kwanza, Inflation, and Sovereign Yield Curves: Anchoring Stability</h2>
+            <p class="standfirst">
+                Monetary policy adjustments by the Banco Nacional de Angola (BNA) have effectively anchored foreign exchange volatility, opening a strategic window for long-duration fixed-income allocations.
+            </p>
         </div>
+
+        <div class="grid-2col">
+            <div>
+                <p class="body-copy">
+                    Angola's macroeconomic architecture in 2026 demonstrates remarkable resilience against global commodity headwinds. Stable oil export receipts alongside conservative fiscal management have allowed the Ministry of Finance to rationalize its issuance calendar, prioritizing Treasury Bonds indexed to foreign currencies (OT-TX) alongside high-yielding non-readjustable bonds (OT-NR).
+                </p>
+                <p class="body-copy">
+                    Yield curves have begun displaying a healthier downward-sloping structure at the long end, signaling market confidence in medium-term disinflation. Institutional managers are advised to lock in double-digit yields on 5-to-7 year OT-NR instruments before expected rate cuts materialize in early 2027.
+                </p>
+            </div>
+
+            <div>
+                <!-- Pure SVG Yield Curve Chart -->
+                <div class="chart-container">
+                    <h3 class="subsection-header" style="font-size: 9.5px; margin-bottom: 8px;">Angolan Sovereign Yield Curve (OT-NR Yields vs Duration)</h3>
+                    <svg class="svg-chart" viewBox="0 0 300 120">
+                        <!-- Grid Lines -->
+                        <line x1="30" y1="20" x2="290" y2="20" stroke="#E2DDD5" stroke-dasharray="2,2"/>
+                        <line x1="30" y1="50" x2="290" y2="50" stroke="#E2DDD5" stroke-dasharray="2,2"/>
+                        <line x1="30" y1="80" x2="290" y2="80" stroke="#E2DDD5" stroke-dasharray="2,2"/>
+                        <line x1="30" y1="110" x2="290" y2="110" stroke="#CCCCCC"/>
+
+                        <!-- Y Axis Labels -->
+                        <text x="5" y="23" font-family="Space Grotesk" font-size="7" fill="#5C6270">18.0%</text>
+                        <text x="5" y="53" font-family="Space Grotesk" font-size="7" fill="#5C6270">16.0%</text>
+                        <text x="5" y="83" font-family="Space Grotesk" font-size="7" fill="#5C6270">14.0%</text>
+
+                        <!-- Yield Curve Line -->
+                        <path d="M 40,30 Q 100,25 160,55 T 280,75" fill="none" stroke="#0F1D33" stroke-width="2.5"/>
+                        
+                        <!-- Data Points -->
+                        <circle cx="40" cy="30" r="4" fill="#A68966"/>
+                        <circle cx="100" cy="27" r="4" fill="#A68966"/>
+                        <circle cx="160" cy="55" r="4" fill="#A68966"/>
+                        <circle cx="220" cy="68" r="4" fill="#A68966"/>
+                        <circle cx="280" cy="75" r="4" fill="#A68966"/>
+
+                        <!-- X Axis Labels -->
+                        <text x="32" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">1Y OT</text>
+                        <text x="92" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">2Y OT</text>
+                        <text x="152" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">5Y OT</text>
+                        <text x="212" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">7Y OT</text>
+                        <text x="270" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">10Y OT</text>
+                    </svg>
+                    <p class="font-accent" style="font-size: 7.5px; color: var(--text-muted); margin-top: 4px; text-align: right;">Source: BODIVA Trading Desk / BFA Research</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BFA Economic Forecast Table -->
+        <div style="margin-top: 10px;">
+            <h3 class="subsection-header" style="margin-bottom: 8px;">Macroeconomic Projections Summary</h3>
+            <table style="width: 100%; border-collapse: collapse; font-family: 'Space Grotesk', sans-serif; font-size: 9.5px;">
+                <thead>
+                    <tr style="background: var(--brand-navy); color: #FFF; text-align: left;">
+                        <th style="padding: 6px 10px;">INDICATOR</th>
+                        <th style="padding: 6px 10px;">2024 ACTUAL</th>
+                        <th style="padding: 6px 10px;">2025 ESTIMATE</th>
+                        <th style="padding: 6px 10px; color: var(--accent-gold);">2026 FORECAST</th>
+                        <th style="padding: 6px 10px;">2027 TARGET</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-light); background: rgba(255,255,255,0.4);">
+                        <td style="padding: 6px 10px; font-weight: 600;">Real GDP Growth YoY</td>
+                        <td style="padding: 6px 10px;">2.4%</td>
+                        <td style="padding: 6px 10px;">2.9%</td>
+                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">3.2%</td>
+                        <td style="padding: 6px 10px;">3.8%</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 6px 10px; font-weight: 600;">Consumer Price Index (CPI YoY)</td>
+                        <td style="padding: 6px 10px;">23.6%</td>
+                        <td style="padding: 6px 10px;">20.1%</td>
+                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">18.4%</td>
+                        <td style="padding: 6px 10px;">14.0%</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light); background: rgba(255,255,255,0.4);">
+                        <td style="padding: 6px 10px; font-weight: 600;">Crude Production (m barrels/day)</td>
+                        <td style="padding: 6px 10px;">1.12</td>
+                        <td style="padding: 6px 10px;">1.15</td>
+                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">1.18</td>
+                        <td style="padding: 6px 10px;">1.20</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 6px 10px; font-weight: 600;">Fiscal Balance (% of GDP)</td>
+                        <td style="padding: 6px 10px;">1.1%</td>
+                        <td style="padding: 6px 10px;">1.8%</td>
+                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">2.3%</td>
+                        <td style="padding: 6px 10px;">2.5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer-folio">
+            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
+            <span>PAGE 03</span>
+        </div>
+    </div>
+
+    <!-- -->
+    <!-- SPREAD 04: THE EQUITY HORIZON & PROPRIV PRIVATIZATION -->
+    <div class="a4-page">
+        <div class="header-folio">
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">SECTION 03 • EQUITY MARKETS</span>
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">PROPRIV PRIVATIZATION PIPELINE</span>
+        </div>
+
+        <div class="grid-sidebar-right">
+            <div>
+                <h3 class="subsection-header">Equity Growth Drivers</h3>
+                <h2 class="section-header">From State Ownership to Public Floating: Catalytic IPOs</h2>
+                <p class="standfirst">
+                    The rollout of Angola's Privatization Program (PROPRIV) is creating a core universe of dividend-rich equities, transforming BODIVA into an active venue for retail and foreign capital.
+                </p>
+
+                <p class="body-copy drop-cap">
+                    Following the landmark listings of BAI and Caixa Geral Angola, the market capitalization of BODIVA's equity segment has expanded dramatically. The presence of regulated, high-performing financial institutions has established liquid benchmarks, encouraging broader corporate issuers to explore initial public offerings.
+                </p>
+
+                <p class="body-copy">
+                    The prospective floating of state insurance titan ENSA Seguros alongside non-energy assets from Sonangol represents the next growth catalyst. Institutional managers at BFA note that early equity listings have consistently delivered robust dividend yields exceeding 12-14%, offering exceptional real-rate protection against regional inflation.
+                </p>
+
+                <!-- Equity Volume Bar Chart -->
+                <div class="chart-container">
+                    <h3 class="subsection-header" style="font-size: 9px;">Equity Market Capitalization Growth (AOA Billions)</h3>
+                    <div class="bar-chart">
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="height: 35%;"><span class="bar-value">120B</span></div>
+                            <span class="bar-label">2023</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill" style="height: 55%;"><span class="bar-value">280B</span></div>
+                            <span class="bar-label">2024</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill accent" style="height: 80%;"><span class="bar-value">490B</span></div>
+                            <span class="bar-label">2025</span>
+                        </div>
+                        <div class="bar-wrapper">
+                            <div class="bar-fill accent" style="height: 100%;"><span class="bar-value">680B</span></div>
+                            <span class="bar-label">2026F</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column Sidebar -->
+            <div>
+                <div class="sidebar-box" style="margin-bottom: 14px;">
+                    <h3 class="subsection-header">Privatization Watch</h3>
+                    <div style="margin-bottom: 10px;">
+                        <p class="font-sans" style="font-size: 10px; font-weight: 700; color: var(--brand-navy);">ENSA SEGUROS</p>
+                        <p class="font-accent" style="font-size: 8px; color: var(--text-muted);">Status: Finalizing Roadshow</p>
+                        <p class="font-sans" style="font-size: 9px; color: #444; margin-top: 2px;">30% Capital Float Target</p>
+                    </div>
+                    <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-light);">
+                        <p class="font-sans" style="font-size: 10px; font-weight: 700; color: var(--brand-navy);">SONANGOL SUBSIDIARIES</p>
+                        <p class="font-accent" style="font-size: 8px; color: var(--text-muted);">Status: Restructuring</p>
+                        <p class="font-sans" style="font-size: 9px; color: #444; margin-top: 2px;">Logistics & Retail Energy</p>
+                    </div>
+                    <div style="padding-top: 8px; border-top: 1px dashed var(--border-light);">
+                        <p class="font-sans" style="font-size: 10px; font-weight: 700; color: var(--brand-navy);">ENDIAMA</p>
+                        <p class="font-accent" style="font-size: 8px; color: var(--text-muted);">Status: Feasibility Phase</p>
+                        <p class="font-sans" style="font-size: 9px; color: #444; margin-top: 2px;">Diamond Sector Exposure</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-box" style="background-color: var(--brand-navy); color: #FFF;">
+                    <h3 class="subsection-header" style="color: var(--accent-gold);">BFA Strategy Tip</h3>
+                    <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #E0E6F0;">
+                        Focus on bank equities exhibiting Price-to-Earnings (P/E) ratios below 4.5x and Return on Equity (ROE) profiles higher than 25%.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-folio">
+            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
+            <span>PAGE 04</span>
+        </div>
+    </div>
+
+    <!-- -->
+    <!-- SPREAD 05: FIXED INCOME DEBT & REPO LIQUIDITY -->
+    <div class="a4-page">
+        <div class="header-folio">
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">SECTION 04 • SECONDARY DEBT & REPOS</span>
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">LIQUIDITY MECHANISMS</span>
+        </div>
+
         <div>
-          <p class="font-accent uppercase" style="font-size: 8px; letter-spacing: 0.2em; color: #78716c; margin-bottom: 4px;">Creative Director</p>
-          <p style="font-size: 11px; font-weight: 500; color: #1c1917;">Margaux de Villiers</p>
+            <h3 class="subsection-header">Fixed Income Operations</h3>
+            <h2 class="section-header">Secondary Debt Trading & Repo Operations: Expanding Institutional Depth</h2>
+            <p class="standfirst">
+                The standardization of repurchase agreements (Repos) on BODIVA's platform has transformed liquidity management for commercial banks and corporate treasuries across Angola.
+            </p>
         </div>
+
+        <div class="grid-2col" style="margin-bottom: 14px;">
+            <div>
+                <p class="body-copy">
+                    Historically dominated by buy-and-hold sovereign paper, BODIVA's secondary market now records consistent daily trading volumes. The introduction of automated Repo matching mechanisms allows institutional investors to monetize long-term sovereign bond holdings without triggering outright sales, unlocking short-term working capital.
+                </p>
+                <p class="body-copy">
+                    Furthermore, corporate bond issuances are gaining traction. Private sector champions within manufacturing, telecom, and logistics are utilizing BODIVA-listed debt to bypass traditional bank loan constraints, securing fixed rates for 3-to-5 year expansion project financing.
+                </p>
+            </div>
+
+            <div class="sidebar-box">
+                <h3 class="subsection-header">BODIVA Secondary Market Turnover</h3>
+                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-family: 'Space Grotesk'; font-size: 8.5px; margin-bottom: 2px;">
+                            <span>SOVEREIGN BONDS (OT)</span>
+                            <strong>82% Market Share</strong>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #DDD;"><div style="width: 82%; height: 100%; background: var(--brand-navy);"></div></div>
+                    </div>
+
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-family: 'Space Grotesk'; font-size: 8.5px; margin-bottom: 2px;">
+                            <span>REPURCHASE AGREEMENTS (REPOS)</span>
+                            <strong>14% Market Share</strong>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #DDD;"><div style="width: 14%; height: 100%; background: var(--accent-gold);"></div></div>
+                    </div>
+
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-family: 'Space Grotesk'; font-size: 8.5px; margin-bottom: 2px;">
+                            <span>CORPORATE BONDS & EQUITIES</span>
+                            <strong>4% Market Share</strong>
+                        </div>
+                        <div style="width: 100%; height: 6px; background: #DDD;"><div style="width: 4%; height: 100%; background: var(--brand-crimson);"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategy Grid -->
+        <div class="grid-3col">
+            <div class="sidebar-box" style="border-top: 2px solid var(--brand-navy);">
+                <h3 class="subsection-header" style="color: var(--brand-navy);">Commercial Banks</h3>
+                <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #444;">
+                    Utilize BODIVA Repos to satisfy BNA reserve requirements, optimizing cash management while capturing sovereign yield spreads.
+                </p>
+            </div>
+
+            <div class="sidebar-box" style="border-top: 2px solid var(--accent-gold);">
+                <h3 class="subsection-header" style="color: var(--accent-gold);">Pension Funds</h3>
+                <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #444;">
+                    Accumulate 7Y+ OT-NR paper to match long-term liabilities, securing cash flow yields above projected headline inflation.
+                </p>
+            </div>
+
+            <div class="sidebar-box" style="border-top: 2px solid var(--brand-crimson);">
+                <h3 class="subsection-header" style="color: var(--brand-crimson);">Foreign Investors</h3>
+                <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #444;">
+                    Participate in Eurobond instruments and USD-indexed OT-TX paper, mitigating currency devaluation risks while capturing high yields.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-folio">
+            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
+            <span>PAGE 05</span>
+        </div>
+    </div>
+
+    <!-- -->
+    <!-- SPREAD 06: ESG BONDS, REGIONAL INTEGRATION & STRATEGIC CONCLUSION -->
+    <div class="a4-page dark-theme" style="background: linear-gradient(135deg, #0F1D33 0%, #0A1324 100%);">
+        <div class="header-folio">
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">SECTION 05 • FUTURE HORIZONS</span>
+            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: #8A92A3;">ESG & REGIONAL INTEGRATION</span>
+        </div>
+
         <div>
-          <p class="font-accent uppercase" style="font-size: 8px; letter-spacing: 0.2em; color: #78716c; margin-bottom: 4px;">Director of Photography</p>
-          <p style="font-size: 11px; font-weight: 500; color: #1c1917;">Julian Thorne</p>
-        </div>
-      </div>
-
-      <!-- Small Callout Box -->
-      <div style="margin-top: auto; background-color: #f5f5f4; padding: 1rem; border-radius: 2px; border: 1px solid #e7e5e4;">
-        <h4 class="font-accent uppercase" style="font-size: 8px; font-weight: 700; letter-spacing: 0.2em; color: #1c1917; margin-bottom: 0.5rem;">Editorial Mandate</h4>
-        <p class="font-editorial" style="font-style: italic; font-size: 12px; line-height: 1.3; color: #57534e;">
-          Documenting the human search for quiet elegance and spatial integrity along the world's most dramatic coastlines.
-        </p>
-      </div>
-    </div>
-
-    <!-- Right Column: Letter from the Editor (Copyfitted to exact height) -->
-    <div style="flex: 1; display: flex; flex-direction: column; position: relative; height: 100%;">
-      <h2 class="font-display" style="font-size: 64px; line-height: 0.9; color: #1c1917; margin-bottom: 1.5rem;">The Geometry<br/>of Quiet</h2>
-      
-      <!-- Standfirst (Dek) -->
-      <p class="font-editorial" style="font-size: 1.5rem; font-style: italic; color: #57534e; line-height: 1.3; margin-bottom: 2rem; border-left: 3px solid #d6d3d1; padding-left: 1rem;">
-        Finding spatial integrity where the Atlantic meets the granite spine of the peninsula.
-      </p>
-
-      <div style="width: 100%; height: 120mm; margin-bottom: 2rem; overflow: hidden; border-radius: 2px; position: relative; filter: grayscale(20%);">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=90" class="w-full h-full object-cover" alt="Editor portrait" />
-        <p class="font-accent uppercase" style="position: absolute; bottom: 0.75rem; right: 0.75rem; font-size: 8px; color: #ffffff; letter-spacing: 0.2em; mix-blend-mode: difference;">Fig 0.1 — Alistair Vance</p>
-      </div>
-
-      <!-- Copyfitted Body Text -->
-      <div class="font-body" style="font-size: 11px; line-height: 1.8; color: #292524; text-align: justify;">
-        <p class="drop-cap">There is a particular hour along the Atlantic seaboard—just before the south-easterly wind settles for the evening—when the granite mountain boulders turn a soft violet gray. The ocean slows its violent swell, and the light holds an uncanny, golden density.</p>
-        <p style="margin-top: 0.75rem;">In our hyper-accelerated modern era, true luxury is no longer defined by opulence, square footage, or excess. It is defined entirely by stillness, spatial integrity, and the rare privilege of undisturbed time. We seek out physical spaces that force us to slow our cadence, forcing an appreciation for the elemental weight of our surroundings.</p>
-        <p style="margin-top: 0.75rem;">This issue celebrates the art of designing for permanence. To build on this peninsula is to enter into a dialogue with elements far older than we are. Welcome to the quiet.</p>
-      </div>
-      
-      <!-- Folio -->
-      <div class="font-accent" style="position: absolute; bottom: 0; right: 0; font-size: 10px; font-weight: 700; color: #a8a29e;">02</div>
-    </div>
-  </div>
-
-  <!-- PAGE 3: FEATURE OPENER (Typography-Driven) -->
-  <div class="a4-page p-15mm flex flex-col" style="background-color: #09090b; color: #f5f5f4;">
-    <!-- Section Kicker -->
-    <div class="flex align-center gap-4" style="margin-bottom: 3rem; border-bottom: 1px solid #27272a; padding-bottom: 1rem;">
-      <span style="width: 8px; height: 8px; background-color: #f5f5f4; border-radius: 9999px;"></span>
-      <h3 class="font-accent uppercase" style="font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: #a8a29e;">Terrain & Topography</h3>
-    </div>
-    
-    <!-- Massive Typographic Block -->
-    <h2 class="font-display" style="font-size: 92px; line-height: 0.85; color: #fafafa; margin-bottom: 2rem; width: 90%;">
-      Where Two Oceans<br/>
-      <span class="font-editorial" style="font-style: italic; font-weight: 300; font-size: 86px; color: #a8a29e;">Meet the</span><br/>
-      Mountain
-    </h2>
-
-    <p class="font-body" style="font-size: 0.875rem; color: #a8a29e; width: 66%; line-height: 1.625; margin-bottom: auto;">
-      An inquiry into the distinct microclimates, the cold Atlantic clarity, and the architectural sanctuaries clinging to the southern Cape peninsula.
-    </p>
-
-    <!-- Structural Image with integrated caption -->
-    <div class="relative w-full" style="height: 140mm; margin-top: 2rem; border: 1px solid #27272a;">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=90" class="w-full h-full object-cover" style="opacity: 0.9; filter: grayscale(30%);" alt="Modern coastal home" />
-      <div style="position: absolute; bottom: 0; left: 0; background-color: rgba(9, 9, 11, 0.9); backdrop-filter: blur(12px); padding: 1rem; width: 50%; border-top: 1px solid #27272a; border-right: 1px solid #27272a;">
-        <p class="font-accent uppercase" style="font-size: 8px; color: #a8a29e; letter-spacing: 0.25em; margin-bottom: 4px;">Location Coordinates</p>
-        <p class="font-body" style="font-size: 10px; color: #e7e5e4; font-weight: 500;">33°56'15.5"S 18°22'35.3"E — Clifton</p>
-      </div>
-    </div>
-
-    <!-- Folio -->
-    <div class="font-accent" style="position: absolute; bottom: 15mm; right: 15mm; font-size: 10px; font-weight: 700; color: #52525b;">03</div>
-  </div>
-
-  <!-- PAGE 4: LONG-FORM FEATURE (Text-Driven, 2-Column Grid + Fact Box) -->
-  <div class="a4-page p-15mm flex flex-col relative">
-    
-    <!-- Running Header -->
-    <div class="flex justify-between w-full" style="border-bottom: 1px solid #d6d3d1; padding-bottom: 0.75rem; margin-bottom: 2rem;">
-      <span class="font-accent uppercase" style="font-size: 8px; font-weight: 700; letter-spacing: 0.2em; color: #a8a29e;">Architecture</span>
-      <span class="font-accent uppercase" style="font-size: 8px; font-weight: 700; letter-spacing: 0.2em; color: #a8a29e;">The Geometry of Quiet</span>
-    </div>
-
-    <div class="flex" style="gap: 10mm; height: 240mm;">
-      
-      <!-- Main Text Area (2 Columns) -->
-      <div class="col-2-text" style="width: 125mm;">
-        <p class="font-body" style="font-size: 11px; line-height: 1.75; color: #292524; margin-bottom: 1rem;">
-          <strong class="font-accent uppercase" style="font-weight: 600; color: #09090b; font-size: 10px; letter-spacing: 0.05em;">The Cape Peninsula is a geological anomaly.</strong> Narrower than fifteen kilometers at its widest point, it rises like a spine of rugged sandstone and granite between the Benguela cold current of the Atlantic Ocean and the slightly warmer, sheltered waters of False Bay.
-        </p>
-        <p class="font-body" style="font-size: 11px; line-height: 1.75; color: #292524; margin-bottom: 1rem;">
-          This dramatic maritime collision creates highly distinct microclimates every few miles. While thick sea mist frequently shrouds the steep cliffs of Camps Bay, bright Mediterranean sunlight bathes the historic vineyards of Constantia just across the mountain pass. Architects working along this extreme coastline face a unique and demanding challenge: building homes that embrace the raw grandeur of sea and mountain while deeply insulating occupants against violent south-easterly gales.
-        </p>
-        <p class="font-body" style="font-size: 11px; line-height: 1.75; color: #292524; margin-bottom: 1rem;">
-          Suspended over a steep granite cliff, a recent masterwork by a leading local studio merges raw industrial materials with soft coastal vegetation. The board-marked concrete ceiling echoes the rough texture of sea-drifted timber, while thick off-shutter granite walls ground the structure firmly into the mountainside.
-        </p>
-        <p class="font-body" style="font-size: 11px; line-height: 1.75; color: #292524; margin-bottom: 1rem;">
-          Motorized structural glass panels retract entirely into hidden pocket walls, completely eliminating the boundary between the living room and the vast Atlantic ocean twelve stories below. The spatial seamlessness achieved here is not merely a visual trick; it is a fundamental rethinking of how a home breathes with its environment.
-        </p>
-      </div>
-
-      <!-- Right Sidebar (Data & Quotes) -->
-      <div style="flex: 1; display: flex; flex-direction: column; gap: 1.5rem; border-left: 1px solid #e7e5e4; padding-left: 8mm;">
-        
-        <!-- Pull Quote -->
-        <div>
-          <span class="font-display" style="font-size: 3rem; color: #d6d3d1; line-height: 1;">“</span>
-          <p class="font-editorial" style="font-style: italic; font-size: 22px; line-height: 1.2; color: #292524; margin-top: -0.5rem;">
-            We didn't want to build a house that sat on top of the rock. We wanted a structure that emerged out of the cliff itself.
-          </p>
-          <p class="font-accent uppercase" style="font-size: 9px; font-weight: 700; color: #78716c; letter-spacing: 0.2em; margin-top: 1rem;">— Lead Architect</p>
+            <h3 class="subsection-header" style="color: var(--accent-gold);">Green Finance & Regional Growth</h3>
+            <h2 class="section-header" style="color: #FFF;">ESG Frameworks & SADC Capital Integration</h2>
+            <p class="standfirst" style="color: #D4C3A3;">
+                Connecting Angola’s financial ecosystem with regional SADC debt markets and global green capital pools.
+            </p>
         </div>
 
-        <!-- Fact Box -->
-        <div style="background-color: #1c1917; padding: 1.25rem; margin-top: auto; margin-bottom: 1rem; border-radius: 2px;">
-          <h4 class="font-accent uppercase" style="font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: #f5f5f4; margin-bottom: 1rem;">Material Palette</h4>
-          <ul class="font-body" style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 10px; color: #a8a29e;">
-            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #44403c; padding-bottom: 0.5rem;">
-              <span style="color: #d6d3d1;">Ceilings</span> 
-              <span class="font-accent">Board-Marked Concrete</span>
-            </li>
-            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #44403c; padding-bottom: 0.5rem;">
-              <span style="color: #d6d3d1;">Anchor Walls</span> 
-              <span class="font-accent">Off-Shutter Granite</span>
-            </li>
-            <li style="display: flex; justify-content: space-between; border-bottom: 1px solid #44403c; padding-bottom: 0.5rem;">
-              <span style="color: #d6d3d1;">Decking</span> 
-              <span class="font-accent">Oiled Balau Timber</span>
-            </li>
-            <li style="display: flex; justify-content: space-between;">
-              <span style="color: #d6d3d1;">Facades</span> 
-              <span class="font-accent">Frameless Glazing</span>
-            </li>
-          </ul>
+        <div class="grid-2col" style="margin-bottom: 20px;">
+            <div>
+                <p class="body-copy">
+                    As sustainable finance transitions from niche concept to mainstream imperative, BODIVA is establishing regulatory frameworks for Green, Social, and Sustainability (GSS) bonds. These instruments aim to finance crucial renewable energy projects, water sanitation systems, and sustainable agricultural developments across Angola's provinces.
+                </p>
+                <p class="body-copy">
+                    Simultaneously, integration efforts via the Committee of SADC Stock Exchanges (CoSSE) are advancing cross-border dual listings. This allows international asset managers operating in Johannesburg or London to trade Angolan securities seamlessly through standardized clearing protocols.
+                </p>
+            </div>
+
+            <div class="sidebar-box" style="background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1);">
+                <h3 class="subsection-header" style="color: var(--accent-gold);">Strategic Model Allocation</h3>
+                <ul class="font-sans" style="list-style: none; font-size: 9.5px; line-height: 2.2; color: #C2C8D4;">
+                    <li style="border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-space-between;"><span>Long-Duration OT-NR Debt</span> <strong style="color: #FFF;">50%</strong></li>
+                    <li style="border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-space-between;"><span>Blue-Chip Banking Equities</span> <strong style="color: #FFF;">25%</strong></li>
+                    <li style="border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-space-between;"><span>FX-Indexed OT-TX Debt</span> <strong style="color: #FFF;">15%</strong></li>
+                    <li style="display: flex; justify-space-between;"><span>Corporate & Green Debt</span> <strong style="color: #FFF;">10%</strong></li>
+                </ul>
+            </div>
         </div>
-      </div>
+
+        <!-- Closing Contacts Box -->
+        <div style="background: rgba(166, 137, 102, 0.1); border: 1px solid var(--accent-gold); padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+            <div>
+                <h3 class="subsection-header" style="color: #FFF; font-size: 11px;">BODIVA & BFA Advisory Contacts</h3>
+                <p class="font-sans" style="font-size: 10px; color: #D4C3A3; margin-top: 2px;">Capital Markets Research & Advisory Desk</p>
+                <p class="font-sans" style="font-size: 9px; color: #8A92A3; margin-top: 4px;">Email: research@bfa.ao • capitalmarkets@bodiva.ao</p>
+            </div>
+            <div style="text-align: right;">
+                <p class="font-accent" style="font-size: 10px; color: #FFF; font-weight: 700;">LUANDA, ANGOLA</p>
+                <p class="font-accent" style="font-size: 8.5px; color: var(--accent-gold);">WWW.BODIVA.AO</p>
+            </div>
+        </div>
+
+        <div class="footer-folio">
+            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
+            <span>PAGE 06</span>
+        </div>
     </div>
 
-    <!-- Folio -->
-    <div class="font-accent" style="position: absolute; bottom: 15mm; right: 15mm; font-size: 10px; font-weight: 700; color: #a8a29e;">04</div>
-  </div>
+    <script>
+        // Puppeteer Render Mode Check (?render=1)
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("render") === "1") {
+            document.querySelectorAll('#downloadPdf, .no-print').forEach(el => {
+                el.style.display = "none";
+            });
+        }
 
-  <!-- PAGE 5: GALLERY & METADATA (Visual Rhythm) -->
-  <div class="a4-page p-15mm flex flex-col relative" style="background-color: #f5f5f4;">
-    <div class="flex justify-between items-end" style="margin-bottom: 2rem;">
-      <h2 class="font-editorial" style="font-size: 2.25rem; color: #1c1917;">Atlantic Dawn</h2>
-      <p class="font-accent uppercase" style="font-size: 9px; font-weight: 700; letter-spacing: 0.2em; color: #78716c;">The Art of Cold Exposure</p>
-    </div>
+        // Real Server PDF API Handler
+        async function downloadMagazinePdf() {
+            const btn = document.getElementById("downloadPdf");
+            if (!btn) return;
 
-    <!-- Image Grid -->
-    <div style="display: grid; grid-template-columns: 1fr; gap: 10mm; height: 190mm;">
-      <div class="relative w-full" style="height: 120mm;">
-        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=90" class="w-full h-full object-cover" style="filter: grayscale(10%);" alt="Tidal Pool" />
-        <div class="font-body" style="position: absolute; bottom: -1.5rem; left: 0; right: 0; border-top: 1px solid #d6d3d1; padding-top: 0.5rem; display: flex; justify-content: space-between; font-size: 9px; color: #78716c;">
-          <span><strong class="font-accent uppercase" style="color: #1c1917; letter-spacing: 0.2em;">Fig 2.1</strong> — Dalebrook Tidal Pool, Kalk Bay</span>
-          <span>Shot on medium format</span>
-        </div>
-      </div>
+            const originalHTML = btn.innerHTML;
 
-      <div class="flex" style="gap: 8mm; margin-top: 10mm;">
-        <!-- Text Block -->
-        <div class="font-body" style="flex: 1; font-size: 11px; line-height: 1.7; color: #44403c; text-align: justify;">
-          <p>Immersing oneself in 11°C seawater requires absolute mental surrender. Within sixty seconds of submersion, norepinephrine levels increase dramatically, triggering profound cellular repair, reducing systemic inflammation, and fostering deep mental calm. Along the False Bay coastline, historic stone tidal pools built in the early 1900s offer safe sanctuaries. These pools serve as communal gathering spaces where the city’s early risers meet in silence before dawn.</p>
-        </div>
-        <!-- Steps Box -->
-        <div style="width: 60mm; background-color: #ffffff; padding: 1rem; border: 1px solid #e7e5e4;">
-          <h4 class="font-accent uppercase" style="font-size: 9px; font-weight: 700; letter-spacing: 0.2em; color: #1c1917; margin-bottom: 0.75rem; border-bottom: 1px solid #e7e5e4; padding-bottom: 0.5rem;">10-Min Protocol</h4>
-          <ol class="font-body" style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 10px; color: #57534e;">
-            <li><strong class="font-accent" style="color: #1c1917;">01. Breathe:</strong> Diaphragmatic exhales.</li>
-            <li><strong class="font-accent" style="color: #1c1917;">02. Submerge:</strong> Enter to collarbone.</li>
-            <li><strong class="font-accent" style="color: #1c1917;">03. Endure:</strong> Hold for 3–5 minutes.</li>
-          </ol>
-        </div>
-      </div>
-    </div>
+            try {
+                btn.style.pointerEvents = "none";
+                btn.style.opacity = "0.75";
+                btn.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    <span>Generating PDF...</span>
+                `;
 
-    <!-- Folio -->
-    <div class="font-accent" style="position: absolute; bottom: 15mm; right: 15mm; font-size: 10px; font-weight: 700; color: #a8a29e;">05</div>
-  </div>
+                const response = await fetch('/api/render-pdf', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/pdf'
+                    }
+                });
 
-  <!-- PAGE 6: BACK COVER (Quiet, Aesthetic Closing) -->
-  <div class="a4-page relative flex flex-col items-center justify-center text-center">
-    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=90" class="absolute inset-0 w-full h-full object-cover" style="filter: grayscale(30%);" alt="Back Cover Landscape" />
-    <div class="absolute inset-0" style="background-color: rgba(9, 9, 11, 0.6); mix-blend-mode: multiply;"></div>
-    
-    <div class="relative flex flex-col items-center justify-center p-15mm w-full h-full" style="z-index: 10;">
-      <div style="width: 3rem; height: 1px; background-color: rgba(255, 255, 255, 0.4); margin-bottom: 3rem;"></div>
-      <h2 class="font-display" style="font-size: 72px; color: #ffffff; line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.02em;">HAVEN</h2>
-      <p class="font-editorial" style="font-size: 1.5rem; font-style: italic; color: rgba(255, 255, 255, 0.8); margin-bottom: 3rem;">"Life is lived in the spaces between moments."</p>
-      <div style="width: 3rem; height: 1px; background-color: rgba(255, 255, 255, 0.4); margin-top: 1.5rem; margin-bottom: 3rem;"></div>
-      
-      <div style="margin-top: auto; display: flex; flex-direction: column; align-items: center;">
-        <p class="font-accent uppercase" style="font-size: 8px; font-weight: 700; letter-spacing: 0.3em; color: rgba(255, 255, 255, 0.6); margin-bottom: 1rem;">Stockists: London • New York • Tokyo • Cape Town</p>
-        <p class="font-accent uppercase" style="font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: #ffffff; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 0.5rem; cursor: pointer;">HAVENMAGAZINE.COM</p>
-      </div>
-    </div>
-  </div>
+                if (!response.ok) {
+                    throw new Error(`Server returned status ${response.status}`);
+                }
 
-  <script>
-    // Hide floating bar/button during Puppeteer server rendering (?render=1)
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("render") === "1") {
-      const btn = document.getElementById("downloadPdf");
-      if (btn) {
-        btn.style.display = "none";
-      }
-    }
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = 'magazine.pdf';
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.URL.revokeObjectURL(downloadUrl);
+            } catch (error) {
+                console.error("PDF generation failed:", error);
+                btn.innerHTML = `<span>Error - Try Again</span>`;
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.pointerEvents = "auto";
+                    btn.style.opacity = "1";
+                }, 3000);
+                return;
+            }
 
-    /**
-     * Server-side PDF export stub function.
-     * Replaces all client-side PDF compilation libraries (pdf-lib, fontkit, html2canvas).
-     * This function will communicate directly with a server endpoint (e.g. Vercel + Puppeteer).
-     */
-    async function requestServerPDF() {
-      const statusText = document.getElementById('status-text');
-      const btn = document.getElementById('pdf-btn');
-      const btnText = document.getElementById('btn-text');
-
-      btn.disabled = true;
-      btn.style.opacity = '0.6';
-      btnText.innerText = "CONNECTING...";
-      statusText.innerText = "Connecting to Puppeteer server-side endpoint...";
-
-      try {
-        /* 
-         * Future Server-Side Implementation Example:
-         * -------------------------------------------------------------
-         * const response = await fetch('/api/render-pdf', {
-         *   method: 'POST',
-         *   headers: { 'Content-Type': 'application/json' },
-         *   body: JSON.stringify({ html: document.documentElement.outerHTML })
-         * });
-         * const blob = await response.blob();
-         * window.location.href = URL.createObjectURL(blob);
-         */
-
-        setTimeout(() => {
-          statusText.innerText = "Puppeteer payload ready. Send HTML to Vercel endpoint.";
-          btnText.innerText = "SERVER READY";
-          btn.disabled = false;
-          btn.style.opacity = '1';
-        }, 1200);
-
-      } catch (error) {
-        console.error("Server API error:", error);
-        statusText.innerText = "Error connecting to server PDF endpoint.";
-        btnText.innerText = "RETRY";
-        btn.disabled = false;
-        btn.style.opacity = '1';
-      }
-    }
-  </script>
+            btn.innerHTML = originalHTML;
+            btn.style.pointerEvents = "auto";
+            btn.style.opacity = "1";
+        }
+    </script>
 </body>
 </html>
