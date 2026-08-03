@@ -46,7 +46,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* */
         .a4-page {
             width: 210mm;
             height: 297mm;
@@ -56,6 +55,17 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            page-break-after: always;
+            break-after: page;
+            page-break-inside: avoid;
+        }
+
+        .a4-page:last-child {
+            page-break-after: auto;
+            break-after: auto;
+        }
+
         .dark-theme .a4-page {
             background-color: var(--brand-navy);
             color: #F0F3F8;
@@ -67,17 +77,28 @@
                 margin: 0;
             }
             body {
-                background: none;
+                margin: 0;
                 padding: 0;
+                background: white;
                 gap: 0;
+                display: block;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             .a4-page {
-                box-shadow: none;
                 margin: 0;
+                box-shadow: none;
+                border: none;
                 width: 210mm;
                 height: 297mm;
+                page-break-after: always;
+                break-after: page;
+                page-break-inside: avoid;
+                overflow: hidden;
+            }
+            .a4-page:last-child {
+                page-break-after: auto;
+                break-after: auto;
             }
             #downloadPdf, .no-print {
                 display: none !important;
