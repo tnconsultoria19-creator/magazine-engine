@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BODIVA & BFA Investment Outlook 2026</title>
+    <title>Kwanza Nobre • Real Estate & Engineering Insights (Pág. 01 & 02)</title>
     <style>
-        /* */
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap');
+
         @font-face {
             font-family: 'Boska';
             src: url('https://eagleprocurement.github.io/Kwanza-Nobre/Boska-Bold.otf') format('opentype');
@@ -16,16 +15,15 @@
         }
 
         :root {
-            --bg-paper: #F7F5F0;
-            --bg-paper-dark: #11141A;
-            --text-dark: #14171F;
-            --text-muted: #5C6270;
-            --accent-gold: #A68966;
-            --accent-gold-light: #D4C3A3;
-            --brand-navy: #0F1D33;
-            --brand-crimson: #8C2328;
-            --border-light: #E2DDD5;
-            --reading-width: 65ch;
+            --bg-paper: #FFFFFF;
+            --text-dark: #121619;
+            --text-muted: #555E68;
+            --accent-gold: #B88E24;
+            --brand-navy: #0E1624;
+            --border-light: #E5E2DC;
+            --reading-width: 58ch;
+            --body-font-size: 15px;
+            --secondary-font-size: 13.5px;
         }
 
         * {
@@ -34,28 +32,33 @@
             padding: 0;
         }
 
-        body {
-            background-color: #CBD0D8;
-            font-family: 'IBM Plex Sans', sans-serif;
+        html, body {
+            background-color: #E6E8EB;
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px 0;
-            gap: 30px;
-            -webkit-font-smoothing: antialiased;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 32px 0 64px 0;
+            gap: 32px;
         }
 
+        /* STRICT NON-SCROLLABLE A4 PAGE CONTAINERS */
         .a4-page {
             width: 210mm;
             height: 297mm;
+            max-height: 297mm;
             background-color: var(--bg-paper);
-            padding: 20mm 22mm;
             position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden; /* Prevents internal scrollbars */
+            box-shadow: 0 20px 45px rgba(0,0,0,0.12);
             page-break-after: always;
             break-after: page;
             page-break-inside: avoid;
@@ -66,302 +69,369 @@
             break-after: auto;
         }
 
-        .dark-theme .a4-page {
-            background-color: var(--brand-navy);
-            color: #F0F3F8;
+        /* PAGE 01 GRID LAYOUT */
+        .page-01-grid {
+            display: grid;
+            grid-template-columns: 52% 48%;
+            height: 100%;
+            width: 100%;
+        }
+
+        /* PRINT & PUPPETEER PDF ENGINE STYLES */
+        @page {
+            size: 210mm 297mm;
+            margin: 0;
         }
 
         @media print {
-            @page {
-                size: 210mm 297mm;
-                margin: 0;
-            }
             body {
                 margin: 0;
                 padding: 0;
                 background: white;
-                gap: 0;
                 display: block;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
             }
             .a4-page {
-                margin: 0;
                 box-shadow: none;
                 border: none;
                 width: 210mm;
                 height: 297mm;
+                max-height: 297mm;
                 page-break-after: always;
                 break-after: page;
                 page-break-inside: avoid;
-                overflow: hidden;
+                overflow: hidden !important;
+                margin-bottom: 0;
             }
             .a4-page:last-child {
                 page-break-after: auto;
                 break-after: auto;
             }
-            #downloadPdf, .no-print {
+            #downloadPdf, .no-print, .modal-backdrop {
                 display: none !important;
             }
         }
 
-        /* Typography Hierarchy */
-        .font-display { font-family: 'Boska', 'Cormorant Garamond', serif; }
-        .font-editorial { font-family: 'Cormorant Garamond', serif; }
-        .font-sans { font-family: 'IBM Plex Sans', sans-serif; }
-        .font-accent { font-family: 'Space Grotesk', sans-serif; }
-
-        h1.cover-title {
-            font-family: 'Boska', serif;
-            font-size: 50px;
-            line-height: 0.95;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
+        /* LEFT EDITORIAL COLUMN (PAGE 01) */
+        .content-panel {
+            padding: 22mm 16mm 18mm 18mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #FFFFFF;
+            height: 100%;
+            overflow: hidden;
         }
 
-        h2.section-header {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 8px;
+        .header-group {
+            display: flex;
+            flex-direction: column;
         }
 
-        h3.subsection-header {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
+        h1.editor-title {
+            font-family: 'Boska', 'Cormorant Garamond', serif;
+            font-size: 58px;
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+            color: var(--text-dark);
+            margin-bottom: 28px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--accent-gold);
-            margin-bottom: 6px;
+        }
+
+        .body-text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
         }
 
         p.body-copy {
-            font-size: 11.5px;
-            line-height: 1.72;
-            color: #2D313B;
-            text-align: justify;
-            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #2D343C;
+            max-width: var(--reading-width);
+            text-align: left;
         }
 
-        .dark-theme p.body-copy {
-            color: #C2C8D4;
+        p.body-copy strong {
+            color: var(--text-dark);
+            font-weight: 600;
         }
 
-        p.standfirst {
+        .editorial-salutation {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            line-height: 1.45;
+            font-size: 28px;
             font-style: italic;
-            color: var(--brand-navy);
-            margin-bottom: 18px;
-            border-left: 2px solid var(--accent-gold);
-            padding-left: 14px;
-        }
-
-        .dark-theme p.standfirst {
-            color: var(--accent-gold-light);
-        }
-
-        .drop-cap::first-letter {
-            font-family: 'Boska', serif;
-            font-size: 3.8rem;
-            line-height: 2.8rem;
-            padding-top: 4px;
-            padding-right: 8px;
-            float: left;
-            color: var(--brand-navy);
-        }
-
-        /* */
-        .header-folio {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 10px;
-            margin-bottom: 16px;
-        }
-
-        .dark-theme .header-folio {
-            border-bottom-color: rgba(255,255,255,0.12);
-        }
-
-        .footer-folio {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-light);
-            padding-top: 10px;
-            margin-top: 16px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 8.5px;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .dark-theme .footer-folio {
-            border-top-color: rgba(255,255,255,0.12);
-            color: #8A92A3;
-        }
-
-        /* Modular Grid Systems */
-        .grid-2col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .grid-3col {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-        }
-
-        .grid-sidebar-left {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 22px;
-        }
-
-        .grid-sidebar-right {
-            display: grid;
-            grid-template-columns: 1fr 180px;
-            gap: 22px;
-        }
-
-        /* Callout Boxes and Data Modules */
-        .sidebar-box {
-            background-color: rgba(15, 29, 51, 0.04);
-            border: 1px solid var(--border-light);
-            padding: 14px;
-            border-radius: 2px;
-        }
-
-        .dark-theme .sidebar-box {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-card {
-            border-top: 2px solid var(--accent-gold);
-            padding-top: 8px;
-        }
-
-        .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--brand-navy);
-            line-height: 1;
-        }
-
-        .dark-theme .stat-number {
-            color: #FFF;
-        }
-
-        .stat-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 8.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--text-dark);
             margin-top: 4px;
+            margin-bottom: 18px;
         }
 
-        /* */
-        /* Custom CSS Data Visualizations */
-        .chart-container {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--border-light);
-            padding: 14px;
-            margin: 12px 0;
-        }
-
-        .dark-theme .chart-container {
-            background: rgba(15, 23, 38, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .bar-chart {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            height: 110px;
-            padding-top: 20px;
-            border-bottom: 1px solid #CCC;
-            gap: 12px;
-        }
-
-        .dark-theme .bar-chart {
-            border-bottom-color: #444;
-        }
-
-        .bar-wrapper {
-            flex: 1;
+        /* SIGNATURE BLOCK */
+        .signature-block {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            height: 100%;
-            justify-content: flex-end;
+            gap: 3px;
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0,0,0,0.06);
         }
 
-        .bar-fill {
+        .handwritten-signature {
+            font-family: 'Alex Brush', cursive;
+            font-size: 42px;
+            color: var(--brand-navy);
+            line-height: 1;
+            margin-bottom: 6px;
+            user-select: none;
+        }
+
+        .signatory-name {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: -0.01em;
+        }
+
+        .signatory-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .signatory-company {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* RIGHT FULL-HEIGHT VISUAL PANEL (PAGE 01) */
+        .visual-panel {
             width: 100%;
-            max-width: 28px;
-            background-color: var(--brand-navy);
-            transition: height 0.3s;
+            height: 100%;
+            position: relative;
+            background-color: #121822;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .visual-panel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay-badge {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(14, 22, 36, 0.85);
+            backdrop-filter: blur(8px);
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* PAGE 02 SPECIFIC STYLES (CLONED SPREAD DESIGN) */
+        .page-02-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            background-color: #FFFFFF;
+            padding: 0;
             position: relative;
         }
 
-        .bar-fill.accent {
-            background-color: var(--accent-gold);
+        .p2-header-banner {
+            width: 100%;
+            height: 82mm;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--brand-navy);
+            cursor: pointer;
         }
 
-        .bar-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 8px;
-            font-weight: 700;
+        .p2-header-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .p2-header-overlay {
             position: absolute;
-            top: -14px;
-            width: 100%;
-            text-align: center;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(14, 22, 36, 0.2) 0%, rgba(14, 22, 36, 0.75) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 18mm;
+        }
+
+        .p2-banner-title {
+            font-family: 'Cormorant Garamond', 'Boska', serif;
+            font-size: 46px;
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .p2-banner-title span.italic-sub {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 54px;
+            display: inline-block;
+            margin-left: 12px;
+            color: #E2DDD5;
+        }
+
+        .p2-main-content {
+            padding: 12mm 18mm 10mm 18mm;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .p2-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 700;
             color: var(--text-dark);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
         }
 
-        .dark-theme .bar-value {
-            color: #FFF;
+        /* 3-COLUMN ASYMMETRICAL EDITORIAL GRID */
+        .p2-grid-container {
+            display: grid;
+            grid-template-columns: 30% 36% 30%;
+            gap: 4%;
+            align-items: start;
+            flex: 1;
         }
 
-        .bar-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 8px;
-            text-transform: uppercase;
-            margin-top: 6px;
-            color: var(--text-muted);
+        .p2-col-left {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
 
-        /* Vector SVG Yield Curve Chart */
-        .svg-chart {
+        .p2-col-middle {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .p2-col-right {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        p.p2-text-block {
+            font-size: 13.5px;
+            line-height: 1.58;
+            color: #333D47;
+            text-align: justify;
+        }
+
+        .p2-image-frame {
             width: 100%;
-            height: 120px;
-            overflow: visible;
+            position: relative;
+            overflow: hidden;
+            background-color: #121822;
+            cursor: pointer;
+            border-radius: 2px;
         }
 
-        /* Server Action Bar */
+        .p2-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .p2-img-left {
+            height: 110mm;
+            margin-top: 4px;
+        }
+
+        .p2-img-right {
+            height: 122mm;
+        }
+
+        /* FOOTER & PAGINATION */
+        .p2-footer-area {
+            margin-top: auto;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .p2-source-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 9.5px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .p2-source-text a {
+            color: var(--brand-navy);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .p2-rule-line {
+            width: 100%;
+            height: 1px;
+            background-color: #DCD9D2;
+        }
+
+        .p2-page-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: right;
+            padding-top: 2px;
+        }
+
+        /* FLOATING ACTION BAR FOR PDF RENDERING */
         #downloadPdf {
             position: fixed;
             bottom: 24px;
             z-index: 999;
             background-color: var(--brand-navy);
             color: #FFF;
-            padding: 14px 28px;
+            padding: 16px 32px;
             border-radius: 40px;
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
@@ -370,523 +440,305 @@
             border: 1px solid rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            transition: all 0.2s ease;
         }
 
         #downloadPdf:hover {
             background-color: var(--accent-gold);
+            transform: translateY(-2px);
         }
+
+        /* MODAL STYLING FOR IMAGE REPLACEMENT */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #FFF;
+            width: 100%;
+            max-width: 460px;
+            border-radius: 12px;
+            padding: 26px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .modal-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            color: var(--brand-navy);
+        }
+
+        .modal-card input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary { background-color: var(--brand-navy); color: #FFF; }
+        .btn-primary:hover { background-color: var(--accent-gold); }
+        .btn-secondary { background-color: #E2DDD5; color: var(--text-dark); }
     </style>
 </head>
 <body>
 
-    <!-- Server Action Bar -->
+    <!-- Floating PDF Export Action Button -->
     <div id="downloadPdf" onclick="downloadMagazinePdf()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Download PDF</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Descarregar Revista PDF (2 Páginas)</span>
     </div>
 
-    <!-- SPREAD 01: COVER SPREAD -->
-    <div class="a4-page dark-theme" style="background: linear-gradient(135deg, #0A1324 0%, #0F1D33 60%, #172845 100%);">
-        <div class="header-folio">
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.25em; color: var(--accent-gold);">BODIVA & BFA CAPITAL MARKETS</span>
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.25em; color: #8A92A3;">ANNUAL STRATEGY • 2026/2027</span>
-        </div>
-
-        <div style="margin-top: 40px; margin-bottom: 30px;">
-            <h3 class="subsection-header" style="color: var(--accent-gold); font-size: 12px; margin-bottom: 16px;">Joint Institutional Outlook</h3>
-            <h1 class="cover-title" style="color: #FFF; font-size: 54px; margin-bottom: 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
-                ANGOLA CAPITAL<br/>MARKET OUTLOOK
-            </h1>
-            <div style="width: 60px; height: 3px; background-color: var(--accent-gold); margin-bottom: 24px;"></div>
-            <p class="font-editorial" style="font-size: 22px; line-height: 1.4; color: #D4C3A3; max-w: 80%; font-style: italic;">
-                Navigating Sovereign Debt Yield Curves, Privatization Liquidity, and Structural Equity Growth in Sub-Saharan Africa.
-            </p>
-        </div>
-
-        <!-- Metric Cards Overlay -->
-        <div class="grid-4col" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: auto; margin-bottom: 30px;">
-            <div class="stat-card" style="border-top-color: var(--accent-gold);">
-                <div class="stat-number" style="font-size: 22px;">$4.2B</div>
-                <div class="stat-label">BODIVA Annual Volume</div>
-            </div>
-            <div class="stat-card" style="border-top-color: var(--accent-gold);">
-                <div class="stat-number" style="font-size: 22px;">16.8%</div>
-                <div class="stat-label">Peak Treasury Yield</div>
-            </div>
-            <div class="stat-card" style="border-top-color: var(--accent-gold);">
-                <div class="stat-number" style="font-size: 22px;">+3.2%</div>
-                <div class="stat-label">Projected GDP Growth</div>
-            </div>
-            <div class="stat-card" style="border-top-color: var(--accent-gold);">
-                <div class="stat-number" style="font-size: 22px;">18.4%</div>
-                <div class="stat-label">Target Inflation Rate</div>
-            </div>
-        </div>
-
-        <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); padding: 18px; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-                <p class="font-accent" style="font-size: 9px; color: var(--accent-gold); letter-spacing: 0.15em;">PARTNERSHIP PUBLICATION</p>
-                <p class="font-sans" style="font-size: 11px; color: #FFF; font-weight: 500; margin-top: 2px;">Bolsa de Dívida e Valores de Angola & Banco de Fomento Angola</p>
-            </div>
-            <span class="font-accent" style="font-size: 10px; color: #8A92A3;">LUANDA • Q3 2026</span>
-        </div>
-
-        <div class="footer-folio">
-            <span>CONFIDENTIAL • FOR INSTITUTIONAL INVESTORS</span>
-            <span>SPREAD 01</span>
-        </div>
-    </div>
-
-    <!-- -->
-    <!-- SPREAD 02: TABLE OF CONTENTS & EXECUTIVE STATEMENT -->
+    <!-- PAGE 01: EDITOR'S NOTE (NOTA DO DIRECTOR) -->
     <div class="a4-page">
-        <div class="header-folio">
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">EXECUTIVE STRATEGY STATEMENT</span>
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">BODIVA & BFA OUTLOOK 2026</span>
-        </div>
+        <div class="page-01-grid">
+            <!-- Left Editorial Column -->
+            <div class="content-panel">
+                <div class="header-group">
+                    <h1 class="editor-title">Nota do<br/>Director</h1>
 
-        <div class="grid-sidebar-left" style="align-items: start;">
-            <!-- Left Sidebar Navigation -->
-            <div class="sidebar-box">
-                <h3 class="subsection-header">Report Directory</h3>
-                <ul class="font-sans" style="list-style: none; font-size: 10.5px; line-height: 2.2; color: var(--text-dark);">
-                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>01 Executive Letter</span> <strong>p. 02</strong></li>
-                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>02 Macro Analytics</span> <strong>p. 03</strong></li>
-                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>03 Equity & PROPRIV</span> <strong>p. 04</strong></li>
-                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>04 Fixed Income Debt</span> <strong>p. 05</strong></li>
-                    <li style="border-bottom: 1px dashed var(--border-light); display: flex; justify-content: space-between;"><span>05 ESG & Infrastructure</span> <strong>p. 06</strong></li>
-                </ul>
+                    <div class="body-text-group">
+                        <p class="body-copy">
+                            Investir no mercado imobiliário e de infraestruturas em Angola exige mais do que intuição comercial—requer rigor técnico, avaliação fundamentada do solo e estrito alinhamento com o enquadramento legal vigente.
+                        </p>
+                        <p class="body-copy">
+                            A <strong>Kwanza Nobre – Avaliações e Consultoria (SU), Lda.</strong> nasce para preencher esta lacuna estratégica. O nosso compromisso é oferecer aos investidores, promotores e instituições financeiras relatórios independentes de avaliação de terrenos, estudos de viabilidade construtiva e fiscalização rigorosa de obras.
+                        </p>
+                        <p class="body-copy">
+                            Esta edição inaugural reúne diretrizes essenciais sobre a Lei de Terras, concessão do Direito de Superfície e métodos de inovação construtiva para transformar a incerteza em rentabilidade sustentável.
+                        </p>
+                    </div>
 
-                <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-light);">
-                    <h3 class="subsection-header">Key Indicators</h3>
-                    <p class="font-accent" style="font-size: 9px; color: var(--text-muted); margin-bottom: 4px;">BNA REPO RATE</p>
-                    <p class="font-sans" style="font-size: 16px; font-weight: 700; color: var(--brand-navy);">19.50%</p>
-                    
-                    <p class="font-accent" style="font-size: 9px; color: var(--text-muted); margin-top: 10px; margin-bottom: 4px;">AOA/USD FX RATE</p>
-                    <p class="font-sans" style="font-size: 16px; font-weight: 700; color: var(--brand-navy);">852.4</p>
+                    <div class="editorial-salutation">
+                        Decisões Seguras & Sustentáveis!
+                    </div>
+                </div>
+
+                <div class="signature-block">
+                    <div class="handwritten-signature">Kwanza Nobre</div>
+                    <div class="signatory-name">Eng. Director Geral</div>
+                    <div class="signatory-title">CHIEF EXECUTIVE OFFICER & PERITO AVALIADOR</div>
+                    <div class="signatory-company">Kwanza Nobre – Avaliações e Consultoria (SU), Lda.</div>
                 </div>
             </div>
 
-            <!-- Main Executive Article -->
-            <div>
-                <h3 class="subsection-header">Joint Statement</h3>
-                <h2 class="section-header">A Decade of Institutional Maturity: From Sovereign Issuer to Vibrant Secondary Market</h2>
-                <p class="standfirst">
-                    "As Angola accelerates its economic diversification away from crude dependency, capital markets have transitioned from an emerging debt venue into a primary engine for corporate capital formation."
-                </p>
-                
-                <p class="body-copy drop-cap">
-                    Over the past 36 months, the Angolan capital market landscape has undergone an extraordinary structural metamorphosis. Under the combined stewardship of BODIVA and leading financial intermediaries like BFA Capital Markets, secondary market liquidity has expanded beyond institutional bank balances to encompass pension funds, private wealth, and corporate treasuries.
-                </p>
-                <p class="body-copy">
-                    The ongoing execution of the State Privatization Program (PROPRIV) marks a definitive paradigm shift. With successful equity listings of commercial banking anchors such as Banco Angolano de Investimentos (BAI) and Banco Caixa Geral Angola (BCGA), investor participation has expanded exponentialy. The market is no longer solely focused on sovereign debt issuances; it now encompasses dividend-yielding equity securities and liquidity-generating repo agreements.
-                </p>
-                
-                <div class="sidebar-box" style="margin: 16px 0; background-color: rgba(166, 137, 102, 0.08); border-color: var(--accent-gold);">
-                    <h3 class="subsection-header" style="color: var(--brand-navy);">Strategic Imperatives for 2026/2027</h3>
-                    <p class="body-copy" style="margin-bottom: 0;">
-                        Our joint advisory Framework focuses on three pillars: <strong>(1) Extending sovereign debt maturity profiles</strong> to reduce short-term refinancing risks, <strong>(2) Deepening secondary equity market liquidity</strong> via market-maker frameworks, and <strong>(3) Integrating regional SADC clearing mechanisms</strong> to attract international ESG capital.
-                    </p>
+            <!-- Right Full-Height Visual Panel -->
+            <div class="visual-panel" onclick="openImageEditor('p1_hero')">
+                <img id="p1_hero" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=90" alt="Luanda Infrastructure" onerror="this.src='https://placehold.co/800x1200/0E1624/FFFFFF?text=Clique+para+Substituir'">
+                <div class="image-overlay-badge no-print">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <span>Substituir Imagem</span>
                 </div>
             </div>
-        </div>
-
-        <div class="footer-folio">
-            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
-            <span>PAGE 02</span>
         </div>
     </div>
 
-    <!-- -->
-    <!-- SPREAD 03: MACROECONOMIC LANDSCAPE & SOVEREIGN YIELD CURVE -->
+    <!-- PAGE 02: MUST SEE ATTRACTIONS / POLOS DE INVESTIMENTO -->
     <div class="a4-page">
-        <div class="header-folio">
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">SECTION 02 • MACROECONOMIC LANDSCAPE</span>
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">DEBT YIELD DYNAMICS</span>
-        </div>
-
-        <div>
-            <h3 class="subsection-header">Macro Analysis</h3>
-            <h2 class="section-header">The Kwanza, Inflation, and Sovereign Yield Curves: Anchoring Stability</h2>
-            <p class="standfirst">
-                Monetary policy adjustments by the Banco Nacional de Angola (BNA) have effectively anchored foreign exchange volatility, opening a strategic window for long-duration fixed-income allocations.
-            </p>
-        </div>
-
-        <div class="grid-2col">
-            <div>
-                <p class="body-copy">
-                    Angola's macroeconomic architecture in 2026 demonstrates remarkable resilience against global commodity headwinds. Stable oil export receipts alongside conservative fiscal management have allowed the Ministry of Finance to rationalize its issuance calendar, prioritizing Treasury Bonds indexed to foreign currencies (OT-TX) alongside high-yielding non-readjustable bonds (OT-NR).
-                </p>
-                <p class="body-copy">
-                    Yield curves have begun displaying a healthier downward-sloping structure at the long end, signaling market confidence in medium-term disinflation. Institutional managers are advised to lock in double-digit yields on 5-to-7 year OT-NR instruments before expected rate cuts materialize in early 2027.
-                </p>
-            </div>
-
-            <div>
-                <!-- Pure SVG Yield Curve Chart -->
-                <div class="chart-container">
-                    <h3 class="subsection-header" style="font-size: 9.5px; margin-bottom: 8px;">Angolan Sovereign Yield Curve (OT-NR Yields vs Duration)</h3>
-                    <svg class="svg-chart" viewBox="0 0 300 120">
-                        <!-- Grid Lines -->
-                        <line x1="30" y1="20" x2="290" y2="20" stroke="#E2DDD5" stroke-dasharray="2,2"/>
-                        <line x1="30" y1="50" x2="290" y2="50" stroke="#E2DDD5" stroke-dasharray="2,2"/>
-                        <line x1="30" y1="80" x2="290" y2="80" stroke="#E2DDD5" stroke-dasharray="2,2"/>
-                        <line x1="30" y1="110" x2="290" y2="110" stroke="#CCCCCC"/>
-
-                        <!-- Y Axis Labels -->
-                        <text x="5" y="23" font-family="Space Grotesk" font-size="7" fill="#5C6270">18.0%</text>
-                        <text x="5" y="53" font-family="Space Grotesk" font-size="7" fill="#5C6270">16.0%</text>
-                        <text x="5" y="83" font-family="Space Grotesk" font-size="7" fill="#5C6270">14.0%</text>
-
-                        <!-- Yield Curve Line -->
-                        <path d="M 40,30 Q 100,25 160,55 T 280,75" fill="none" stroke="#0F1D33" stroke-width="2.5"/>
-                        
-                        <!-- Data Points -->
-                        <circle cx="40" cy="30" r="4" fill="#A68966"/>
-                        <circle cx="100" cy="27" r="4" fill="#A68966"/>
-                        <circle cx="160" cy="55" r="4" fill="#A68966"/>
-                        <circle cx="220" cy="68" r="4" fill="#A68966"/>
-                        <circle cx="280" cy="75" r="4" fill="#A68966"/>
-
-                        <!-- X Axis Labels -->
-                        <text x="32" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">1Y OT</text>
-                        <text x="92" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">2Y OT</text>
-                        <text x="152" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">5Y OT</text>
-                        <text x="212" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">7Y OT</text>
-                        <text x="270" y="118" font-family="Space Grotesk" font-size="7" fill="#5C6270">10Y OT</text>
-                    </svg>
-                    <p class="font-accent" style="font-size: 7.5px; color: var(--text-muted); margin-top: 4px; text-align: right;">Source: BODIVA Trading Desk / BFA Research</p>
+        <div class="page-02-layout">
+            <!-- Top Header Banner -->
+            <div class="p2-header-banner" onclick="openImageEditor('p2_banner')">
+                <img id="p2_banner" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=90" alt="African Urban Landscape" onerror="this.src='https://placehold.co/1200x500/0E1624/FFFFFF?text=Banner+Header+Imagem'">
+                <div class="p2-header-overlay">
+                    <div class="p2-banner-title">
+                        Polos de Investimento <span class="italic-sub">em Angola</span>
+                    </div>
+                </div>
+                <div class="image-overlay-badge no-print" style="top: 16px; bottom: auto;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <span>Substituir Banner</span>
                 </div>
             </div>
-        </div>
 
-        <!-- BFA Economic Forecast Table -->
-        <div style="margin-top: 10px;">
-            <h3 class="subsection-header" style="margin-bottom: 8px;">Macroeconomic Projections Summary</h3>
-            <table style="width: 100%; border-collapse: collapse; font-family: 'Space Grotesk', sans-serif; font-size: 9.5px;">
-                <thead>
-                    <tr style="background: var(--brand-navy); color: #FFF; text-align: left;">
-                        <th style="padding: 6px 10px;">INDICATOR</th>
-                        <th style="padding: 6px 10px;">2024 ACTUAL</th>
-                        <th style="padding: 6px 10px;">2025 ESTIMATE</th>
-                        <th style="padding: 6px 10px; color: var(--accent-gold);">2026 FORECAST</th>
-                        <th style="padding: 6px 10px;">2027 TARGET</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-bottom: 1px solid var(--border-light); background: rgba(255,255,255,0.4);">
-                        <td style="padding: 6px 10px; font-weight: 600;">Real GDP Growth YoY</td>
-                        <td style="padding: 6px 10px;">2.4%</td>
-                        <td style="padding: 6px 10px;">2.9%</td>
-                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">3.2%</td>
-                        <td style="padding: 6px 10px;">3.8%</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border-light);">
-                        <td style="padding: 6px 10px; font-weight: 600;">Consumer Price Index (CPI YoY)</td>
-                        <td style="padding: 6px 10px;">23.6%</td>
-                        <td style="padding: 6px 10px;">20.1%</td>
-                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">18.4%</td>
-                        <td style="padding: 6px 10px;">14.0%</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border-light); background: rgba(255,255,255,0.4);">
-                        <td style="padding: 6px 10px; font-weight: 600;">Crude Production (m barrels/day)</td>
-                        <td style="padding: 6px 10px;">1.12</td>
-                        <td style="padding: 6px 10px;">1.15</td>
-                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">1.18</td>
-                        <td style="padding: 6px 10px;">1.20</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--border-light);">
-                        <td style="padding: 6px 10px; font-weight: 600;">Fiscal Balance (% of GDP)</td>
-                        <td style="padding: 6px 10px;">1.1%</td>
-                        <td style="padding: 6px 10px;">1.8%</td>
-                        <td style="padding: 6px 10px; font-weight: 700; color: var(--brand-navy);">2.3%</td>
-                        <td style="padding: 6px 10px;">2.5%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <!-- Main Editorial Content Area -->
+            <div class="p2-main-content">
+                <h2 class="p2-section-title">Luanda, Talatona & Corredor do Lobito</h2>
 
-        <div class="footer-folio">
-            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
-            <span>PAGE 03</span>
+                <div class="p2-grid-container">
+                    <!-- Left Column -->
+                    <div class="p2-col-left">
+                        <p class="p2-text-block">
+                            A capital Luanda e o nó financeiro do Talatona mantêm a liderança na atração de capital institucional no setor imobiliário angolano. A consolidação do Direito de Superfície e o rigor na concessão de licenças construtivas asseguram bases jurídicas para ativos corporativos e residenciais de elevado rendimento.
+                        </p>
+                        <div class="p2-image-frame p2-img-left" onclick="openImageEditor('p2_img_left')">
+                            <img id="p2_img_left" src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=90" alt="Arquitetura em Luanda" onerror="this.src='https://placehold.co/600x900/0E1624/FFFFFF?text=Imagem+Esquerda'">
+                            <div class="image-overlay-badge no-print" style="bottom: 12px; right: 12px; padding: 6px 10px; font-size: 9px;">
+                                <span>Substituir</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle Column -->
+                    <div class="p2-col-middle">
+                        <p class="p2-text-block">
+                            A procura por escritórios de Classe A e complexos logísticos modernos é impulsionada pela diversificação económica. O enquadramento no Plano Director Geral Metropolitano de Luanda (PDGML) impõe novos padrões para a ocupação do solo e retenção de valor patrimonial.
+                        </p>
+                        <p class="p2-text-block">
+                            Fora do eixo metropolitano, o Corredor do Lobito e a província de Benguela emergem como eixos estratégicos para projetos industriais, agroprocessamento e soluções habitacionais sustentáveis de custos controlados.
+                        </p>
+                        <p class="p2-text-block">
+                            A Kwanza Nobre oferece auditorias técnicas independentes e estudos de viabilidade para assegurar que a alocação de capital em qualquer uma destas regiões resulte em rentabilidade previsível e mitigação de risco operacional.
+                        </p>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="p2-col-right">
+                        <div class="p2-image-frame p2-img-right" onclick="openImageEditor('p2_img_right')">
+                            <img id="p2_img_right" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=90" alt="Infraestrutura Angolana" onerror="this.src='https://placehold.co/600x900/0E1624/FFFFFF?text=Imagem+Direita'">
+                            <div class="image-overlay-badge no-print" style="bottom: 12px; right: 12px; padding: 6px 10px; font-size: 9px;">
+                                <span>Substituir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer & Citation Area -->
+                <div class="p2-footer-area">
+                    <div class="p2-source-text">
+                        Referência:<br/>
+                        <a href="https://www.kwanzanobre.co.ao/relatorio-investimento-2026" target="_blank">https://www.kwanzanobre.co.ao/relatorio-investimento-2026/pesquisa-de-mercado-angola</a>
+                    </div>
+                    <div class="p2-rule-line"></div>
+                    <div class="p2-page-number">2</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- -->
-    <!-- SPREAD 04: THE EQUITY HORIZON & PROPRIV PRIVATIZATION -->
-    <div class="a4-page">
-        <div class="header-folio">
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">SECTION 03 • EQUITY MARKETS</span>
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">PROPRIV PRIVATIZATION PIPELINE</span>
-        </div>
-
-        <div class="grid-sidebar-right">
-            <div>
-                <h3 class="subsection-header">Equity Growth Drivers</h3>
-                <h2 class="section-header">From State Ownership to Public Floating: Catalytic IPOs</h2>
-                <p class="standfirst">
-                    The rollout of Angola's Privatization Program (PROPRIV) is creating a core universe of dividend-rich equities, transforming BODIVA into an active venue for retail and foreign capital.
-                </p>
-
-                <p class="body-copy drop-cap">
-                    Following the landmark listings of BAI and Caixa Geral Angola, the market capitalization of BODIVA's equity segment has expanded dramatically. The presence of regulated, high-performing financial institutions has established liquid benchmarks, encouraging broader corporate issuers to explore initial public offerings.
-                </p>
-
-                <p class="body-copy">
-                    The prospective floating of state insurance titan ENSA Seguros alongside non-energy assets from Sonangol represents the next growth catalyst. Institutional managers at BFA note that early equity listings have consistently delivered robust dividend yields exceeding 12-14%, offering exceptional real-rate protection against regional inflation.
-                </p>
-
-                <!-- Equity Volume Bar Chart -->
-                <div class="chart-container">
-                    <h3 class="subsection-header" style="font-size: 9px;">Equity Market Capitalization Growth (AOA Billions)</h3>
-                    <div class="bar-chart">
-                        <div class="bar-wrapper">
-                            <div class="bar-fill" style="height: 35%;"><span class="bar-value">120B</span></div>
-                            <span class="bar-label">2023</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar-fill" style="height: 55%;"><span class="bar-value">280B</span></div>
-                            <span class="bar-label">2024</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar-fill accent" style="height: 80%;"><span class="bar-value">490B</span></div>
-                            <span class="bar-label">2025</span>
-                        </div>
-                        <div class="bar-wrapper">
-                            <div class="bar-fill accent" style="height: 100%;"><span class="bar-value">680B</span></div>
-                            <span class="bar-label">2026F</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- Image Replacement Modal Dialog -->
+    <div class="modal-backdrop" id="editorModal">
+        <div class="modal-card">
+            <h3>Substituir Imagem Selecionada</h3>
+            <p style="font-size: 13px; color: var(--text-muted); font-family: 'IBM Plex Sans';">Forneça o URL público de uma imagem de alta resolução ou carregue um ficheiro local.</p>
+            <div id="modalErrorMessage" style="display: none; color: #B88E24; font-size: 13px; font-family: 'IBM Plex Sans';"></div>
+            
+            <input type="text" id="imageUrlInput" placeholder="https://images.unsplash.com/photo-...">
+            
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-family: 'Space Grotesk'; font-size: 11px; color: var(--text-muted);">OU CARREGAR FICHEIRO:</span>
+                <input type="file" id="imageFileInput" accept="image/*" style="font-size: 12px;">
             </div>
 
-            <!-- Right Column Sidebar -->
-            <div>
-                <div class="sidebar-box" style="margin-bottom: 14px;">
-                    <h3 class="subsection-header">Privatization Watch</h3>
-                    <div style="margin-bottom: 10px;">
-                        <p class="font-sans" style="font-size: 10px; font-weight: 700; color: var(--brand-navy);">ENSA SEGUROS</p>
-                        <p class="font-accent" style="font-size: 8px; color: var(--text-muted);">Status: Finalizing Roadshow</p>
-                        <p class="font-sans" style="font-size: 9px; color: #444; margin-top: 2px;">30% Capital Float Target</p>
-                    </div>
-                    <div style="margin-bottom: 10px; padding-top: 8px; border-top: 1px dashed var(--border-light);">
-                        <p class="font-sans" style="font-size: 10px; font-weight: 700; color: var(--brand-navy);">SONANGOL SUBSIDIARIES</p>
-                        <p class="font-accent" style="font-size: 8px; color: var(--text-muted);">Status: Restructuring</p>
-                        <p class="font-sans" style="font-size: 9px; color: #444; margin-top: 2px;">Logistics & Retail Energy</p>
-                    </div>
-                    <div style="padding-top: 8px; border-top: 1px dashed var(--border-light);">
-                        <p class="font-sans" style="font-size: 10px; font-weight: 700; color: var(--brand-navy);">ENDIAMA</p>
-                        <p class="font-accent" style="font-size: 8px; color: var(--text-muted);">Status: Feasibility Phase</p>
-                        <p class="font-sans" style="font-size: 9px; color: #444; margin-top: 2px;">Diamond Sector Exposure</p>
-                    </div>
-                </div>
-
-                <div class="sidebar-box" style="background-color: var(--brand-navy); color: #FFF;">
-                    <h3 class="subsection-header" style="color: var(--accent-gold);">BFA Strategy Tip</h3>
-                    <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #E0E6F0;">
-                        Focus on bank equities exhibiting Price-to-Earnings (P/E) ratios below 4.5x and Return on Equity (ROE) profiles higher than 25%.
-                    </p>
-                </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeImageEditor()">Cancelar</button>
+                <button class="btn btn-primary" onclick="applyImageReplacement()">Aplicar Imagem</button>
             </div>
-        </div>
-
-        <div class="footer-folio">
-            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
-            <span>PAGE 04</span>
-        </div>
-    </div>
-
-    <!-- -->
-    <!-- SPREAD 05: FIXED INCOME DEBT & REPO LIQUIDITY -->
-    <div class="a4-page">
-        <div class="header-folio">
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--text-muted);">SECTION 04 • SECONDARY DEBT & REPOS</span>
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">LIQUIDITY MECHANISMS</span>
-        </div>
-
-        <div>
-            <h3 class="subsection-header">Fixed Income Operations</h3>
-            <h2 class="section-header">Secondary Debt Trading & Repo Operations: Expanding Institutional Depth</h2>
-            <p class="standfirst">
-                The standardization of repurchase agreements (Repos) on BODIVA's platform has transformed liquidity management for commercial banks and corporate treasuries across Angola.
-            </p>
-        </div>
-
-        <div class="grid-2col" style="margin-bottom: 14px;">
-            <div>
-                <p class="body-copy">
-                    Historically dominated by buy-and-hold sovereign paper, BODIVA's secondary market now records consistent daily trading volumes. The introduction of automated Repo matching mechanisms allows institutional investors to monetize long-term sovereign bond holdings without triggering outright sales, unlocking short-term working capital.
-                </p>
-                <p class="body-copy">
-                    Furthermore, corporate bond issuances are gaining traction. Private sector champions within manufacturing, telecom, and logistics are utilizing BODIVA-listed debt to bypass traditional bank loan constraints, securing fixed rates for 3-to-5 year expansion project financing.
-                </p>
-            </div>
-
-            <div class="sidebar-box">
-                <h3 class="subsection-header">BODIVA Secondary Market Turnover</h3>
-                <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-family: 'Space Grotesk'; font-size: 8.5px; margin-bottom: 2px;">
-                            <span>SOVEREIGN BONDS (OT)</span>
-                            <strong>82% Market Share</strong>
-                        </div>
-                        <div style="width: 100%; height: 6px; background: #DDD;"><div style="width: 82%; height: 100%; background: var(--brand-navy);"></div></div>
-                    </div>
-
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-family: 'Space Grotesk'; font-size: 8.5px; margin-bottom: 2px;">
-                            <span>REPURCHASE AGREEMENTS (REPOS)</span>
-                            <strong>14% Market Share</strong>
-                        </div>
-                        <div style="width: 100%; height: 6px; background: #DDD;"><div style="width: 14%; height: 100%; background: var(--accent-gold);"></div></div>
-                    </div>
-
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-family: 'Space Grotesk'; font-size: 8.5px; margin-bottom: 2px;">
-                            <span>CORPORATE BONDS & EQUITIES</span>
-                            <strong>4% Market Share</strong>
-                        </div>
-                        <div style="width: 100%; height: 6px; background: #DDD;"><div style="width: 4%; height: 100%; background: var(--brand-crimson);"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Strategy Grid -->
-        <div class="grid-3col">
-            <div class="sidebar-box" style="border-top: 2px solid var(--brand-navy);">
-                <h3 class="subsection-header" style="color: var(--brand-navy);">Commercial Banks</h3>
-                <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #444;">
-                    Utilize BODIVA Repos to satisfy BNA reserve requirements, optimizing cash management while capturing sovereign yield spreads.
-                </p>
-            </div>
-
-            <div class="sidebar-box" style="border-top: 2px solid var(--accent-gold);">
-                <h3 class="subsection-header" style="color: var(--accent-gold);">Pension Funds</h3>
-                <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #444;">
-                    Accumulate 7Y+ OT-NR paper to match long-term liabilities, securing cash flow yields above projected headline inflation.
-                </p>
-            </div>
-
-            <div class="sidebar-box" style="border-top: 2px solid var(--brand-crimson);">
-                <h3 class="subsection-header" style="color: var(--brand-crimson);">Foreign Investors</h3>
-                <p class="font-sans" style="font-size: 9.5px; line-height: 1.6; color: #444;">
-                    Participate in Eurobond instruments and USD-indexed OT-TX paper, mitigating currency devaluation risks while capturing high yields.
-                </p>
-            </div>
-        </div>
-
-        <div class="footer-folio">
-            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
-            <span>PAGE 05</span>
-        </div>
-    </div>
-
-    <!-- -->
-    <!-- SPREAD 06: ESG BONDS, REGIONAL INTEGRATION & STRATEGIC CONCLUSION -->
-    <div class="a4-page dark-theme" style="background: linear-gradient(135deg, #0F1D33 0%, #0A1324 100%);">
-        <div class="header-folio">
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: var(--accent-gold);">SECTION 05 • FUTURE HORIZONS</span>
-            <span class="font-accent" style="font-size: 9px; letter-spacing: 0.2em; color: #8A92A3;">ESG & REGIONAL INTEGRATION</span>
-        </div>
-
-        <div>
-            <h3 class="subsection-header" style="color: var(--accent-gold);">Green Finance & Regional Growth</h3>
-            <h2 class="section-header" style="color: #FFF;">ESG Frameworks & SADC Capital Integration</h2>
-            <p class="standfirst" style="color: #D4C3A3;">
-                Connecting Angola’s financial ecosystem with regional SADC debt markets and global green capital pools.
-            </p>
-        </div>
-
-        <div class="grid-2col" style="margin-bottom: 20px;">
-            <div>
-                <p class="body-copy">
-                    As sustainable finance transitions from niche concept to mainstream imperative, BODIVA is establishing regulatory frameworks for Green, Social, and Sustainability (GSS) bonds. These instruments aim to finance crucial renewable energy projects, water sanitation systems, and sustainable agricultural developments across Angola's provinces.
-                </p>
-                <p class="body-copy">
-                    Simultaneously, integration efforts via the Committee of SADC Stock Exchanges (CoSSE) are advancing cross-border dual listings. This allows international asset managers operating in Johannesburg or London to trade Angolan securities seamlessly through standardized clearing protocols.
-                </p>
-            </div>
-
-            <div class="sidebar-box" style="background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.1);">
-                <h3 class="subsection-header" style="color: var(--accent-gold);">Strategic Model Allocation</h3>
-                <ul class="font-sans" style="list-style: none; font-size: 9.5px; line-height: 2.2; color: #C2C8D4;">
-                    <li style="border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-space-between;"><span>Long-Duration OT-NR Debt</span> <strong style="color: #FFF;">50%</strong></li>
-                    <li style="border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-space-between;"><span>Blue-Chip Banking Equities</span> <strong style="color: #FFF;">25%</strong></li>
-                    <li style="border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-space-between;"><span>FX-Indexed OT-TX Debt</span> <strong style="color: #FFF;">15%</strong></li>
-                    <li style="display: flex; justify-space-between;"><span>Corporate & Green Debt</span> <strong style="color: #FFF;">10%</strong></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Closing Contacts Box -->
-        <div style="background: rgba(166, 137, 102, 0.1); border: 1px solid var(--accent-gold); padding: 20px; display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-            <div>
-                <h3 class="subsection-header" style="color: #FFF; font-size: 11px;">BODIVA & BFA Advisory Contacts</h3>
-                <p class="font-sans" style="font-size: 10px; color: #D4C3A3; margin-top: 2px;">Capital Markets Research & Advisory Desk</p>
-                <p class="font-sans" style="font-size: 9px; color: #8A92A3; margin-top: 4px;">Email: research@bfa.ao • capitalmarkets@bodiva.ao</p>
-            </div>
-            <div style="text-align: right;">
-                <p class="font-accent" style="font-size: 10px; color: #FFF; font-weight: 700;">LUANDA, ANGOLA</p>
-                <p class="font-accent" style="font-size: 8.5px; color: var(--accent-gold);">WWW.BODIVA.AO</p>
-            </div>
-        </div>
-
-        <div class="footer-folio">
-            <span>BODIVA & BFA INVESTMENT OUTLOOK 2026</span>
-            <span>PAGE 06</span>
         </div>
     </div>
 
     <script>
-        // Puppeteer Render Mode Check (?render=1)
+        let currentEditingImgId = null;
+
+        // Check for Puppeteer server render mode via URL query parameter
         const params = new URLSearchParams(window.location.search);
         if (params.get("render") === "1") {
-            document.querySelectorAll('#downloadPdf, .no-print').forEach(el => {
+            document.querySelectorAll('#downloadPdf, .no-print, .modal-backdrop').forEach(el => {
                 el.style.display = "none";
             });
         }
 
-        // Real Server PDF API Handler
+        function openImageEditor(targetImgId) {
+            currentEditingImgId = targetImgId;
+            document.getElementById('imageUrlInput').value = '';
+            document.getElementById('imageFileInput').value = '';
+            const errEl = document.getElementById('modalErrorMessage');
+            if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
+            document.getElementById('editorModal').style.display = 'flex';
+        }
+
+        function closeImageEditor() {
+            document.getElementById('editorModal').style.display = 'none';
+            currentEditingImgId = null;
+        }
+
+        function applyImageReplacement() {
+            if (!currentEditingImgId) return;
+            const urlInput = document.getElementById('imageUrlInput').value.trim();
+            const fileInput = document.getElementById('imageFileInput');
+            const targetImg = document.getElementById(currentEditingImgId);
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (targetImg) targetImg.src = e.target.result;
+                    closeImageEditor();
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else if (urlInput !== '') {
+                if (targetImg) targetImg.src = urlInput;
+                closeImageEditor();
+            } else {
+                const errEl = document.getElementById('modalErrorMessage');
+                if (errEl) {
+                    errEl.textContent = 'Por favor insira um URL válido ou selecione um ficheiro.';
+                    errEl.style.display = 'block';
+                }
+            }
+        }
+
+        // Real PDF Generation via /api/render-pdf
         async function downloadMagazinePdf() {
             const btn = document.getElementById("downloadPdf");
             if (!btn) return;
-
             const originalHTML = btn.innerHTML;
 
             try {
                 btn.style.pointerEvents = "none";
                 btn.style.opacity = "0.75";
-                btn.innerHTML = `
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                    <span>Generating PDF...</span>
-                `;
+                btn.innerHTML = `<span>A Gerar PDF (2 Páginas)...</span>`;
 
                 const response = await fetch('/api/render-pdf', {
                     method: 'GET',
-                    headers: {
-                        'Accept': 'application/pdf'
-                    }
+                    headers: { 'Accept': 'application/pdf' }
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Server returned status ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`Status ${response.status}`);
 
                 const blob = await response.blob();
                 const downloadUrl = window.URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = downloadUrl;
-                link.download = 'magazine.pdf';
+                link.download = 'Kwanza_Nobre_Revista_Paginas_01_02.pdf';
                 document.body.appendChild(link);
                 link.click();
                 link.remove();
                 window.URL.revokeObjectURL(downloadUrl);
             } catch (error) {
                 console.error("PDF generation failed:", error);
-                btn.innerHTML = `<span>Error - Try Again</span>`;
+                btn.innerHTML = `<span>Erro ao Gerar PDF</span>`;
                 setTimeout(() => {
                     btn.innerHTML = originalHTML;
                     btn.style.pointerEvents = "auto";
