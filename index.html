@@ -421,6 +421,273 @@
             padding-top: 2px;
         }
 
+        /* PAGE 03 SPECIFIC STYLES (ENG. NANETE SPOTLIGHT) */
+        .page-03-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            background-color: #F4F6F8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .p3-top-hero {
+            position: relative;
+            width: 100%;
+            height: 130mm;
+            background-color: var(--brand-navy);
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .p3-top-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .p3-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(14, 22, 36, 0.88) 0%, rgba(14, 22, 36, 0.45) 50%, rgba(14, 22, 36, 0.82) 100%);
+            padding: 10mm 18mm 12mm 18mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .p3-logo-badge {
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 auto;
+            border-radius: 4px;
+            background: rgba(14, 22, 36, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .p3-hero-title-group {
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .p3-hero-main-title {
+            font-family: 'Cormorant Garamond', 'Boska', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .p3-hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            color: #E2DDD5;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .p3-hero-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        .p3-hero-left-info {
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-width: 46%;
+        }
+
+        .p3-info-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 0.05em;
+        }
+
+        .p3-info-value {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 11.5px;
+            color: #DCD9D2;
+            line-height: 1.45;
+        }
+
+        .p3-pill-btn {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            margin-top: 4px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .p3-floating-card {
+            width: 48%;
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 18px 20px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .p3-floating-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--brand-navy);
+            text-transform: uppercase;
+        }
+
+        .p3-floating-card p {
+            font-size: 11.5px;
+            line-height: 1.55;
+            color: #333D47;
+        }
+
+        .p3-floating-btn {
+            align-self: flex-start;
+            background-color: #D3A29D;
+            color: #FFFFFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 9.5px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+
+        /* BOTTOM SECTION: THREE COLUMNS WITH CIRCULAR OVERLAPPING IMAGES */
+        .p3-bottom-section {
+            flex: 1;
+            padding: 8mm 18mm 8mm 18mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .p3-section-header {
+            text-align: center;
+            margin-bottom: 14mm;
+        }
+
+        .p3-section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .p3-section-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            font-style: italic;
+            color: #8C7B75;
+            margin-top: 2px;
+        }
+
+        .p3-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            align-items: stretch;
+            margin-bottom: 8px;
+        }
+
+        .p3-feature-card {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 46px 14px 18px 14px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .p3-circle-img-wrap {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: absolute;
+            top: -41px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+            border: 3px solid #FFFFFF;
+            background-color: var(--brand-navy);
+            cursor: pointer;
+        }
+
+        .p3-circle-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .p3-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .p3-card-desc {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #555E68;
+        }
+
+        .p3-footer-row {
+            margin-top: auto;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #DCD9D2;
+        }
+
+        .p3-contact-info {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 9.5px;
+            color: var(--text-muted);
+        }
+
         /* FLOATING ACTION BAR FOR PDF RENDERING */
         #downloadPdf {
             position: fixed;
@@ -519,7 +786,7 @@
     <!-- Floating PDF Export Action Button -->
     <div id="downloadPdf" onclick="downloadMagazinePdf()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Descarregar Revista PDF (2 Páginas)</span>
+        <span>Descarregar Revista PDF (3 Páginas)</span>
     </div>
 
     <!-- PAGE 01: EDITOR'S NOTE (NOTA DO DIRECTOR) -->
@@ -633,6 +900,97 @@
                     </div>
                     <div class="p2-rule-line"></div>
                     <div class="p2-page-number">2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 03: ENGINEER SPOTLIGHT (ENG.ª NANETE) -->
+    <div class="a4-page">
+        <div class="page-03-layout">
+            <!-- Top Hero Banner Section -->
+            <div class="p3-top-hero" onclick="openImageEditor('p3_hero')">
+                <img id="p3_hero" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=90" alt="Eng.ª Nanete Executive" onerror="this.src='https://placehold.co/1200x800/0E1624/FFFFFF?text=Eng.ª+Nanete+Imagem'">
+                
+                <div class="p3-hero-overlay">
+                    <div class="p3-logo-badge">KN</div>
+                    
+                    <div class="p3-hero-title-group">
+                        <h2 class="p3-hero-main-title">Eng.ª Nanete • Engenheira Chefe</h2>
+                        <div class="p3-hero-subtitle">Direção Técnica & Rigor Operacional na Kwanza Nobre</div>
+                    </div>
+
+                    <div class="p3-hero-bottom-row">
+                        <div class="p3-hero-left-info">
+                            <div class="p3-info-label">DISPONIBILIDADE:</div>
+                            <div class="p3-info-value">SEG - SÁB &bull; 08:00 ÀS 18:00<br/>LUANDA & CORREDOR DO LOBITO</div>
+                            <div class="p3-pill-btn">PERITA AVALIADORA</div>
+                        </div>
+
+                        <div class="p3-floating-card">
+                            <h4>Compromisso com o Rigor Técnico</h4>
+                            <p>
+                                Liderando a equipa de engenharia da Kwanza Nobre, a Eng.ª Nanete assegura a máxima precisão nas auditorias patológicas, avaliação pericial de terrenos e fiscalização rigorosa de obras em todo o território nacional.
+                            </p>
+                            <div class="p3-floating-btn">SABER MAIS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-overlay-badge no-print" style="top: 16px; bottom: auto;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                    <span>Substituir Imagem</span>
+                </div>
+            </div>
+
+            <!-- Bottom Section: 3 Columns with Circular Overlapping Images -->
+            <div class="p3-bottom-section">
+                <div class="p3-section-header">
+                    <h3 class="p3-section-title">EIXOS DE LIDERANÇA TÉCNICA</h3>
+                    <div class="p3-section-subtitle">Especialidades sob Coordenação Direta da Eng.ª Nanete</div>
+                </div>
+
+                <div class="p3-cards-grid">
+                    <!-- Card 1 -->
+                    <div class="p3-feature-card">
+                        <div class="p3-circle-img-wrap" onclick="openImageEditor('p3_circle_1')">
+                            <img id="p3_circle_1" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=400&q=90" alt="Avaliação de Terrenos" onerror="this.src='https://placehold.co/400x400/0E1624/FFFFFF?text=Terrenos'">
+                        </div>
+                        <div class="p3-card-title">AVALIAÇÃO DE TERRENOS</div>
+                        <p class="p3-card-desc">
+                            Inspeções detalhadas do solo, determinação do valor de mercado e verificação técnica para concessão do Direito de Superfície.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="p3-feature-card">
+                        <div class="p3-circle-img-wrap" onclick="openImageEditor('p3_circle_2')">
+                            <img id="p3_circle_2" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=90" alt="Fiscalização de Obras" onerror="this.src='https://placehold.co/400x400/0E1624/FFFFFF?text=Fiscalizacao'">
+                        </div>
+                        <div class="p3-card-title">FISCALIZAÇÃO DE OBRAS</div>
+                        <p class="p3-card-desc">
+                            Controlo rigoroso da execução física e financeira, garantindo conformidade com o RGEU e eliminando derrapagens orçamentais.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="p3-feature-card">
+                        <div class="p3-circle-img-wrap" onclick="openImageEditor('p3_circle_3')">
+                            <img id="p3_circle_3" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=90" alt="Estudos de Viabilidade" onerror="this.src='https://placehold.co/400x400/0E1624/FFFFFF?text=Viabilidade'">
+                        </div>
+                        <div class="p3-card-title">ESTUDOS DE VIABILIDADE</div>
+                        <p class="p3-card-desc">
+                            Diagnósticos patológicos e análise técnico-económica para fundamentar decisões seguras de investimento imobiliário.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer & Pagination -->
+                <div class="p3-footer-row">
+                    <div class="p3-contact-info">
+                        Kwanza Nobre – Avaliações e Consultoria (SU), Lda. &bull; Luanda, Angola | geral@kwanzanobre.co.ao
+                    </div>
+                    <div class="p2-page-number">3</div>
                 </div>
             </div>
         </div>
