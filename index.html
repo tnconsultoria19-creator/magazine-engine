@@ -1163,63 +1163,25 @@
                 btn.style.opacity = "0.75";
                 btn.innerHTML = `<span>A Gerar PDF (3 Páginas)...</span>`;
 
-                // Serialize the active HTML document with real <img> tags
                 const currentHtml = document.documentElement.outerHTML;
-
-                // Unique timestamp parameter to force cache bypass
                 const timestamp = Date.now();
                 const renderUrl = `/api/render-pdf?render=1&t=${timestamp}`;
 
-                /* 
-                 * SERVER-SIDE PUPPETEER (render-pdf.js) REFERENCE IMPLEMENTATION:
-                 * 
-                 * export default async function handler(req, res) {
-                 *   const browser = await puppeteer.launch();
-                 *   const page = await browser.newPage();
-                 * 
-                 *   // 1. DISABLE BROWSER CACHE IMMEDIATELY AFTER CREATING THE PAGE
-                 *   await page.setCacheEnabled(false);
-                 * 
-                 *   // 2. SET EXTRA HEADERS TO PREVENT CACHING PIPELINES
-                 *   await page.setExtraHTTPHeaders({
-                 *     'Cache-Control': 'no-cache, no-store, must-revalidate',
-                 *     'Pragma': 'no-cache'
-                 *   });
-                 * 
-                 *   // 3. RENDER LIVE DOM OR CANONICAL PRODUCTION URL (NEVER USE REQ.HEADERS.HOST)
-                 *   if (req.method === 'POST' && req.body && req.body.html) {
-                 *     await page.setContent(req.body.html, { waitUntil: 'networkidle0' });
-                 *   } else {
-                 *     const targetUrl = "https://magazine-engine.vercel.app/?render=1&t=" + Date.now();
-                 *     await page.goto(targetUrl, { waitUntil: 'networkidle0' });
-                 *   }
-                 * 
-                 *   const pdf = await page.pdf({ format: 'A4', printBackground: true });
-                 *   await browser.close();
-                 *   res.setHeader('Content-Type', 'application/pdf');
-                 *   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-                 *   res.send(pdf);
-                 * }
-                 */
-
                 let response;
                 try {
-                    // Send full serialized HTML via POST with cache-bypass headers
                     response = await fetch(renderUrl, {
                         method: 'POST',
-                        headers: { 
+                        headers: {
                             'Content-Type': 'application/json',
-                            'Accept': 'application/pdf',
                             'Cache-Control': 'no-cache, no-store, must-revalidate',
                             'Pragma': 'no-cache'
                         },
-                        body: JSON.stringify({ html: currentHtml, timestamp: timestamp })
+                        body: JSON.stringify({ html: currentHtml })
                     });
-                } catch (postErr) {
-                    // Fallback to GET with unique timestamp parameter and cache-bypass headers
+                } catch (e) {
                     response = await fetch(renderUrl, {
                         method: 'GET',
-                        headers: { 
+                        headers: {
                             'Accept': 'application/pdf',
                             'Cache-Control': 'no-cache, no-store, must-revalidate',
                             'Pragma': 'no-cache'
