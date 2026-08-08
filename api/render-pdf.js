@@ -92,12 +92,16 @@ export default async function handler(req, res) {
       preferCSSPageSize: true
     });
 
+    const buffer = Buffer.from(pdfBuffer);
+
+    res.statusCode = 200;
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=Kwanza_Nobre_Magazine.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="Kwanza_Nobre_Magazine.pdf"');
+    res.setHeader('Content-Length', buffer.length);
     res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
     res.setHeader('Pragma', 'no-cache');
 
-    return res.status(200).send(pdfBuffer);
+    return res.end(buffer);
 
   } catch (error) {
     console.error("Puppeteer PDF Render Failed:", error);
