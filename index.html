@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kwanza Nobre • Real Estate & Engineering Insights (Pág. 01 & 02)</title>
+    <title>Kwanza Nobre • Real Estate & Engineering Insights (Pág. 01, 02 & 03)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap');
 
@@ -50,14 +50,13 @@
             gap: 32px;
         }
 
-        /* STRICT NON-SCROLLABLE A4 PAGE CONTAINERS */
         .a4-page {
             width: 210mm;
             height: 297mm;
             max-height: 297mm;
             background-color: var(--bg-paper);
             position: relative;
-            overflow: hidden; /* Prevents internal scrollbars */
+            overflow: hidden;
             box-shadow: 0 20px 45px rgba(0,0,0,0.12);
             page-break-after: always;
             break-after: page;
@@ -69,15 +68,6 @@
             break-after: auto;
         }
 
-        /* PAGE 01 GRID LAYOUT */
-        .page-01-grid {
-            display: grid;
-            grid-template-columns: 52% 48%;
-            height: 100%;
-            width: 100%;
-        }
-
-        /* PRINT & PUPPETEER PDF ENGINE STYLES */
         @page {
             size: 210mm 297mm;
             margin: 0;
@@ -106,12 +96,18 @@
                 page-break-after: auto;
                 break-after: auto;
             }
-            #downloadPdf, .no-print, .modal-backdrop {
+            #downloadPdf, .no-print, .modal-backdrop, .auto-save-toast {
                 display: none !important;
             }
         }
 
-        /* LEFT EDITORIAL COLUMN (PAGE 01) */
+        .page-01-grid {
+            display: grid;
+            grid-template-columns: 52% 48%;
+            height: 100%;
+            width: 100%;
+        }
+
         .content-panel {
             padding: 22mm 16mm 18mm 18mm;
             display: flex;
@@ -167,7 +163,6 @@
             margin-bottom: 18px;
         }
 
-        /* SIGNATURE BLOCK */
         .signature-block {
             display: flex;
             flex-direction: column;
@@ -213,7 +208,6 @@
             margin-top: 2px;
         }
 
-        /* RIGHT FULL-HEIGHT VISUAL PANEL (PAGE 01) */
         .visual-panel {
             width: 100%;
             height: 100%;
@@ -252,7 +246,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        /* PAGE 02 SPECIFIC STYLES (CLONED SPREAD DESIGN) */
         .page-02-layout {
             display: flex;
             flex-direction: column;
@@ -325,7 +318,6 @@
             letter-spacing: -0.01em;
         }
 
-        /* 3-COLUMN ASYMMETRICAL EDITORIAL GRID */
         .p2-grid-container {
             display: grid;
             grid-template-columns: 30% 36% 30%;
@@ -334,19 +326,7 @@
             flex: 1;
         }
 
-        .p2-col-left {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .p2-col-middle {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .p2-col-right {
+        .p2-col-left, .p2-col-middle, .p2-col-right {
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -375,16 +355,9 @@
             display: block;
         }
 
-        .p2-img-left {
-            height: 110mm;
-            margin-top: 4px;
-        }
+        .p2-img-left { height: 110mm; margin-top: 4px; }
+        .p2-img-right { height: 122mm; }
 
-        .p2-img-right {
-            height: 122mm;
-        }
-
-        /* FOOTER & PAGINATION */
         .p2-footer-area {
             margin-top: auto;
             padding-top: 10px;
@@ -421,7 +394,6 @@
             padding-top: 2px;
         }
 
-        /* PAGE 03 SPECIFIC STYLES (ENG. NANETE SPOTLIGHT) */
         .page-03-layout {
             display: flex;
             flex-direction: column;
@@ -585,7 +557,6 @@
             margin-top: 4px;
         }
 
-        /* BOTTOM SECTION: THREE COLUMNS WITH CIRCULAR OVERLAPPING IMAGES */
         .p3-bottom-section {
             flex: 1;
             padding: 8mm 18mm 8mm 18mm;
@@ -688,7 +659,6 @@
             color: var(--text-muted);
         }
 
-        /* FLOATING ACTION BAR FOR PDF RENDERING */
         #downloadPdf {
             position: fixed;
             bottom: 24px;
@@ -716,7 +686,6 @@
             transform: translateY(-2px);
         }
 
-        /* AUTO-SAVE TOAST NOTIFICATION */
         .auto-save-toast {
             position: fixed;
             bottom: 80px;
@@ -742,7 +711,6 @@
             gap: 6px;
         }
 
-        /* MODAL STYLING FOR IMAGE REPLACEMENT */
         .modal-backdrop {
             position: fixed;
             inset: 0;
@@ -809,7 +777,6 @@
 </head>
 <body>
 
-    <!-- Floating PDF Export Action Button & Auto-Save Toast -->
     <div id="autoSaveToast" class="auto-save-toast">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         <span>Imagens Guardadas Automaticamente</span>
@@ -820,10 +787,8 @@
         <span>Descarregar Revista PDF (3 Páginas)</span>
     </div>
 
-    <!-- PAGE 01: EDITOR'S NOTE (NOTA DO DIRECTOR) -->
     <div class="a4-page">
         <div class="page-01-grid">
-            <!-- Left Editorial Column -->
             <div class="content-panel">
                 <div class="header-group">
                     <h1 class="editor-title">Nota do<br/>Director</h1>
@@ -853,7 +818,6 @@
                 </div>
             </div>
 
-            <!-- Right Full-Height Visual Panel -->
             <div class="visual-panel" onclick="openImageEditor('p1_hero')">
                 <img id="p1_hero" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=90" alt="Luanda Infrastructure" onerror="this.src='https://placehold.co/800x1200/0E1624/FFFFFF?text=Clique+para+Substituir'">
                 <div class="image-overlay-badge no-print">
@@ -864,10 +828,8 @@
         </div>
     </div>
 
-    <!-- PAGE 02: MUST SEE ATTRACTIONS / POLOS DE INVESTIMENTO -->
     <div class="a4-page">
         <div class="page-02-layout">
-            <!-- Top Header Banner -->
             <div class="p2-header-banner" onclick="openImageEditor('p2_banner')">
                 <img id="p2_banner" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=90" alt="African Urban Landscape" onerror="this.src='https://placehold.co/1200x500/0E1624/FFFFFF?text=Banner+Header+Imagem'">
                 <div class="p2-header-overlay">
@@ -881,12 +843,10 @@
                 </div>
             </div>
 
-            <!-- Main Editorial Content Area -->
             <div class="p2-main-content">
                 <h2 class="p2-section-title">Luanda, Talatona & Corredor do Lobito</h2>
 
                 <div class="p2-grid-container">
-                    <!-- Left Column -->
                     <div class="p2-col-left">
                         <p class="p2-text-block">
                             A capital Luanda e o nó financeiro do Talatona mantêm a liderança na atração de capital institucional no setor imobiliário angolano. A consolidação do Direito de Superfície e o rigor na concessão de licenças construtivas asseguram bases jurídicas para ativos corporativos e residenciais de elevado rendimento.
@@ -899,7 +859,6 @@
                         </div>
                     </div>
 
-                    <!-- Middle Column -->
                     <div class="p2-col-middle">
                         <p class="p2-text-block">
                             A procura por escritórios de Classe A e complexos logísticos modernos é impulsionada pela diversificação económica. O enquadramento no Plano Director Geral Metropolitano de Luanda (PDGML) impõe novos padrões para a ocupação do solo e retenção de valor patrimonial.
@@ -912,7 +871,6 @@
                         </p>
                     </div>
 
-                    <!-- Right Column -->
                     <div class="p2-col-right">
                         <div class="p2-image-frame p2-img-right" onclick="openImageEditor('p2_img_right')">
                             <img id="p2_img_right" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=90" alt="Infraestrutura Angolana" onerror="this.src='https://placehold.co/600x900/0E1624/FFFFFF?text=Imagem+Direita'">
@@ -923,7 +881,6 @@
                     </div>
                 </div>
 
-                <!-- Footer & Citation Area -->
                 <div class="p2-footer-area">
                     <div class="p2-source-text">
                         Referência:<br/>
@@ -936,10 +893,8 @@
         </div>
     </div>
 
-    <!-- PAGE 03: ENGINEER SPOTLIGHT (ENG.ª NANETE) -->
     <div class="a4-page">
         <div class="page-03-layout">
-            <!-- Top Hero Banner Section -->
             <div class="p3-top-hero" onclick="openImageEditor('p3_hero')">
                 <img id="p3_hero" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=90" alt="Eng.ª Nanete Executive" onerror="this.src='https://placehold.co/1200x800/0E1624/FFFFFF?text=Eng.ª+Nanete+Imagem'">
                 
@@ -974,7 +929,6 @@
                 </div>
             </div>
 
-            <!-- Bottom Section: 3 Columns with Circular Overlapping Images -->
             <div class="p3-bottom-section">
                 <div class="p3-section-header">
                     <h3 class="p3-section-title">EIXOS DE LIDERANÇA TÉCNICA</h3>
@@ -982,7 +936,6 @@
                 </div>
 
                 <div class="p3-cards-grid">
-                    <!-- Card 1 -->
                     <div class="p3-feature-card">
                         <div class="p3-circle-img-wrap" onclick="openImageEditor('p3_circle_1')">
                             <img id="p3_circle_1" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=400&q=90" alt="Avaliação de Terrenos" onerror="this.src='https://placehold.co/400x400/0E1624/FFFFFF?text=Terrenos'">
@@ -993,7 +946,6 @@
                         </p>
                     </div>
 
-                    <!-- Card 2 -->
                     <div class="p3-feature-card">
                         <div class="p3-circle-img-wrap" onclick="openImageEditor('p3_circle_2')">
                             <img id="p3_circle_2" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=90" alt="Fiscalização de Obras" onerror="this.src='https://placehold.co/400x400/0E1624/FFFFFF?text=Fiscalizacao'">
@@ -1004,7 +956,6 @@
                         </p>
                     </div>
 
-                    <!-- Card 3 -->
                     <div class="p3-feature-card">
                         <div class="p3-circle-img-wrap" onclick="openImageEditor('p3_circle_3')">
                             <img id="p3_circle_3" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=400&q=90" alt="Estudos de Viabilidade" onerror="this.src='https://placehold.co/400x400/0E1624/FFFFFF?text=Viabilidade'">
@@ -1016,7 +967,6 @@
                     </div>
                 </div>
 
-                <!-- Footer & Pagination -->
                 <div class="p3-footer-row">
                     <div class="p3-contact-info">
                         Kwanza Nobre – Avaliações e Consultoria (SU), Lda. &bull; Luanda, Angola | geral@kwanzanobre.co.ao
@@ -1027,7 +977,6 @@
         </div>
     </div>
 
-    <!-- Image Replacement Modal Dialog -->
     <div class="modal-backdrop" id="editorModal">
         <div class="modal-card">
             <h3>Substituir Imagem Selecionada</h3>
@@ -1052,7 +1001,6 @@
         let currentEditingImgId = null;
         const STORAGE_KEY = 'kwanza_nobre_magazine_images';
 
-        // Check for Puppeteer server render mode via URL query parameter
         const params = new URLSearchParams(window.location.search);
         if (params.get("render") === "1") {
             document.querySelectorAll('#downloadPdf, .auto-save-toast, .no-print, .modal-backdrop').forEach(el => {
@@ -1060,7 +1008,6 @@
             });
         }
 
-        // Restore saved images from LocalStorage on load
         function restoreImageState() {
             try {
                 const savedData = localStorage.getItem(STORAGE_KEY);
@@ -1078,7 +1025,6 @@
             }
         }
 
-        // Auto-save image replacement
         function saveImageState(imgId, srcValue) {
             try {
                 const savedData = localStorage.getItem(STORAGE_KEY);
@@ -1102,7 +1048,6 @@
             }, 2500);
         }
 
-        // Run restoration on DOM ready
         document.addEventListener('DOMContentLoaded', restoreImageState);
         restoreImageState();
 
@@ -1152,7 +1097,6 @@
             }
         }
 
-        // Real PDF Generation via /api/render-pdf sending updated HTML DOM
         async function downloadMagazinePdf() {
             const btn = document.getElementById("downloadPdf");
             if (!btn) return;
@@ -1163,7 +1107,19 @@
                 btn.style.opacity = "0.75";
                 btn.innerHTML = `<span>A Gerar PDF (3 Páginas)...</span>`;
 
-                const currentHtml = document.documentElement.outerHTML;
+                const docClone = document.documentElement.cloneNode(true);
+                docClone.querySelectorAll('img').forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src && !src.startsWith('data:') && !src.startsWith('http://') && !src.startsWith('https://')) {
+                        img.setAttribute('src', new URL(src, window.location.href).href);
+                    }
+                });
+
+                docClone.querySelectorAll('#downloadPdf, .auto-save-toast, .no-print, .modal-backdrop').forEach(el => {
+                    el.style.display = "none";
+                });
+
+                const currentHtml = "<!DOCTYPE html>\n" + docClone.outerHTML;
                 const timestamp = Date.now();
                 const renderUrl = `/api/render-pdf?render=1&t=${timestamp}`;
 
