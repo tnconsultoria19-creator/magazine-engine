@@ -1171,11 +1171,35 @@
                 const renderUrl = `/api/render-pdf?render=1&t=${timestamp}`;
 
                 /* 
-                 * SERVER-SIDE PUPPETEER REFERENCE IMPLEMENTATION:
+                 * SERVER-SIDE PUPPETEER (render-pdf.js) REFERENCE IMPLEMENTATION:
                  * 
-                 * const page = await browser.newPage();
-                 * await page.setCacheEnabled(false); // Force Puppeteer to bypass cache
-                 * await page.goto(`https://your-domain.com/?render=1&t=${timestamp}`, { waitUntil: 'networkidle0' });
+                 * export default async function handler(req, res) {
+                 *   const browser = await puppeteer.launch();
+                 *   const page = await browser.newPage();
+                 * 
+                 *   // 1. DISABLE BROWSER CACHE IMMEDIATELY AFTER CREATING THE PAGE
+                 *   await page.setCacheEnabled(false);
+                 * 
+                 *   // 2. SET EXTRA HEADERS TO PREVENT CACHING PIPELINES
+                 *   await page.setExtraHTTPHeaders({
+                 *     'Cache-Control': 'no-cache, no-store, must-revalidate',
+                 *     'Pragma': 'no-cache'
+                 *   });
+                 * 
+                 *   // 3. RENDER LIVE DOM OR CANONICAL PRODUCTION URL (NEVER USE REQ.HEADERS.HOST)
+                 *   if (req.method === 'POST' && req.body && req.body.html) {
+                 *     await page.setContent(req.body.html, { waitUntil: 'networkidle0' });
+                 *   } else {
+                 *     const targetUrl = "https://magazine-engine.vercel.app/?render=1&t=" + Date.now();
+                 *     await page.goto(targetUrl, { waitUntil: 'networkidle0' });
+                 *   }
+                 * 
+                 *   const pdf = await page.pdf({ format: 'A4', printBackground: true });
+                 *   await browser.close();
+                 *   res.setHeader('Content-Type', 'application/pdf');
+                 *   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+                 *   res.send(pdf);
+                 * }
                  */
 
                 let response;
